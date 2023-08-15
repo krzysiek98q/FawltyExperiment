@@ -1,0 +1,83 @@
+
+These imports appear to be undeclared dependencies:
+- 'Cython'
+- 'OpenGL'
+- 'PyInstaller'
+- 'VideoCapture'
+- 'bdist_mpkg_support'
+- 'cv2'
+- 'docutils'
+- 'numpy'
+- 'pkg_resources'
+- 'requests'
+- 'setuptools'
+- 'sphinx'
+- 'vidcap'
+- 'win32api'
+- 'win32file'
+- 'win32pipe'
+
+
+All imports:
+Cython
+IPython
+OpenGL
+OpenSSL
+PIL
+PyInstaller
+VideoCapture
+__main__
+__pypy__
+_abcoll
+_aix_support
+_collections_abc
+_frozen_importlib
+_frozen_importlib_external
+_imp
+_osx_support
+_ssl
+attr
+bdist_mpkg_support
+brotli
+colorama
+com
+cryptography
+ctags
+cv2
+cython
+docutils
+dotenv
+email_validator
+google
+hypothesis
+ipywidgets
+java
+jinja2
+jnius
+keyring
+lockfile
+lxml
+mypy_extensions
+ntlm
+numpy
+ordereddict
+org
+pip_api
+pipreqs
+pkg_resources
+pylama
+railroad
+requests
+requirementslib
+setuptools
+sphinx
+toml
+tornado
+vidcap
+win32api
+win32com
+win32con
+win32file
+win32pipe
+
+

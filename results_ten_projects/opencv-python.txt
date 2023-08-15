@@ -1,0 +1,65 @@
+
+These imports appear to be undeclared dependencies:
+- 'auditwheel'
+- 'pip'
+- 'skbuild'
+
+These dependencies appear to be unused (i.e. not imported):
+- 'numpy'
+
+
+All imports:
+Cython
+IPython
+OpenSSL
+PIL
+__main__
+__pypy__
+_abcoll
+_aix_support
+_collections_abc
+_frozen_importlib
+_frozen_importlib_external
+_imp
+_osx_support
+_ssl
+attr
+auditwheel
+brotli
+colorama
+com
+cryptography
+ctags
+cython
+docutils
+dotenv
+email_validator
+google
+hypothesis
+ipywidgets
+java
+jinja2
+jnius
+keyring
+lockfile
+lxml
+mypy_extensions
+ntlm
+numpy
+ordereddict
+org
+pip
+pip_api
+pipreqs
+pylama
+railroad
+requirementslib
+skbuild
+sphinx
+toml
+tornado
+win32api
+win32com
+win32con
+
+

@@ -1,0 +1,197 @@
+
+These imports appear to be undeclared dependencies:
+- 'AppKit'
+- 'Cython'
+- 'Foundation'
+- 'IPython'
+- 'PyQt4'
+- 'PyQt5'
+- '__main__'
+- '_csv'
+- '_exceptions'
+- '_optional'
+- 'boto3'
+- 'botocore'
+- 'bs4'
+- 'cycler'
+- 'dateutil'
+- 'docutils'
+- 'git'
+- 'google'
+- 'markupsafe'
+- 'mpl_toolkits'
+- 'odf'
+- 'pkg_resources'
+- 'pylab'
+- 'setuptools'
+- 'sklearn'
+- 'tomli'
+- 'traitlets'
+- 'version'
+- 'vulture'
+- 'yaml'
+
+These dependencies appear to be unused (i.e. not imported):
+- 'PyQt5'
+- 'asv'
+- 'beautifulsoup4'
+- 'blosc'
+- 'bottleneck'
+- 'brotlipy'
+- 'coverage'
+- 'cython'
+- 'dataframe-api-compat'
+- 'flake8'
+- 'flask'
+- 'gcsfs'
+- 'gitdb'
+- 'gitpython'
+- 'google-auth'
+- 'html5lib'
+- 'ipykernel'
+- 'ipython'
+- 'meson'
+- 'meson-python'
+- 'moto'
+- 'natsort'
+- 'nbformat'
+- 'nbsphinx'
+- 'notebook'
+- 'odfpy'
+- 'pandas-gbq'
+- 'pandoc'
+- 'pip'
+- 'pre-commit'
+- 'psycopg2'
+- 'psycopg2-binary'
+- 'pydata-sphinx-theme'
+- 'pygments'
+- 'pymysql'
+- 'pyreadstat'
+- 'pytest-asyncio'
+- 'pytest-cov'
+- 'pytest-cython'
+- 'pytest-xdist'
+- 'python-dateutil'
+- 'python-snappy'
+- 'pyyaml'
+- 'sphinx-copybutton'
+- 'sphinx-design'
+- 'sphinx-toggleprompt'
+- 'tabulate'
+- 'types-PyMySQL'
+- 'types-PyYAML'
+- 'types-python-dateutil'
+- 'types-pytz'
+- 'types-setuptools'
+- 'tzdata'
+- 'zstandard'
+
+
+All imports:
+AppKit
+Cython
+Foundation
+IPython
+OpenSSL
+PIL
+PyQt4
+PyQt5
+__main__
+__pypy__
+_abcoll
+_aix_support
+_collections_abc
+_csv
+_exceptions
+_frozen_importlib
+_frozen_importlib_external
+_imp
+_optional
+_osx_support
+_ssl
+attr
+boto3
+botocore
+brotli
+bs4
+colorama
+com
+cryptography
+ctags
+cycler
+cython
+dask
+dateutil
+docutils
+dotenv
+email_validator
+fastparquet
+feedparser
+fsspec
+git
+google
+hypothesis
+ipywidgets
+java
+jinja2
+jnius
+keyring
+lockfile
+lxml
+markdown
+markupsafe
+matplotlib
+mpl_toolkits
+mypy
+mypy_extensions
+nbconvert
+ntlm
+numba
+numexpr
+numpy
+numpydoc
+odf
+openpyxl
+ordereddict
+org
+pip_api
+pipreqs
+pkg_resources
+py
+pyarrow
+pylab
+pylama
+pytest
+pytz
+pyxlsb
+qtpy
+railroad
+requests
+requirementslib
+s3fs
+scipy
+seaborn
+setuptools
+sklearn
+sphinx
+sqlalchemy
+tables
+tokenize_rt
+toml
+tomli
+tornado
+traitlets
+typing_extensions
+version
+versioneer
+vulture
+win32api
+win32com
+win32con
+xarray
+xlrd
+xlsxwriter
+yaml
+
+

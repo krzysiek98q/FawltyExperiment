@@ -1,0 +1,156 @@
+
+These imports appear to be undeclared dependencies:
+- 'Cython'
+- 'IPython'
+- '_pytest'
+- 'black'
+- 'cvxopt'
+- 'dateparser'
+- 'dateutil'
+- 'enthought'
+- 'finance'
+- 'github'
+- 'la'
+- 'mlabwrap'
+- 'models'
+- 'nitime'
+- 'numdifftools'
+- 'pygments'
+- 'pylab'
+- 'pymc'
+- 'requests'
+- 'rpy'
+- 'rpy2'
+- 'savedrvs'
+- 'scikits'
+- 'setuptools'
+- 'sklearn'
+- 'sphinxcontrib'
+- 'sympy'
+- 'tabular'
+- 'theano'
+- 'traitlets'
+- 'typing_extensions'
+- 'virtualenv'
+- 'yaml'
+- 'yapf'
+
+These dependencies appear to be unused (i.e. not imported):
+- 'cython'
+- 'ipykernel'
+- 'isort'
+- 'jupyter'
+- 'nbsphinx'
+- 'notebook'
+- 'oldest-supported-numpy'
+- 'pytest-randomly'
+- 'pytest-xdist'
+- 'pywinpty'
+- 'pyyaml'
+- 'setuptools-scm'
+- 'setuptools_scm'
+- 'simplegeneric'
+- 'sphinx-immaterial'
+- 'theano-pymc'
+
+
+All imports:
+Cython
+IPython
+OpenSSL
+PIL
+__main__
+__pypy__
+_abcoll
+_aix_support
+_collections_abc
+_frozen_importlib
+_frozen_importlib_external
+_imp
+_osx_support
+_pytest
+_ssl
+arviz
+attr
+black
+brotli
+colorama
+com
+cryptography
+ctags
+cvxopt
+cython
+dateparser
+dateutil
+docutils
+dotenv
+email_validator
+enthought
+finance
+flake8
+github
+google
+hypothesis
+ipywidgets
+java
+jinja2
+jnius
+joblib
+jupyter_client
+keyring
+la
+lockfile
+lxml
+matplotlib
+mlabwrap
+models
+mypy_extensions
+nbconvert
+nbformat
+nitime
+ntlm
+numdifftools
+numpy
+numpydoc
+ordereddict
+org
+packaging
+pandas
+pandas_datareader
+patsy
+pip_api
+pipreqs
+pygments
+pylab
+pylama
+pymc
+pymc3
+pytest
+railroad
+requests
+requirementslib
+rpy
+rpy2
+savedrvs
+scikits
+scipy
+seaborn
+setuptools
+sklearn
+sphinx
+sphinxcontrib
+sympy
+tabular
+theano
+toml
+tornado
+traitlets
+typing_extensions
+virtualenv
+win32api
+win32com
+win32con
+yaml
+yapf
+
+

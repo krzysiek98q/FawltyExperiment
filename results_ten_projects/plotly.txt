@@ -1,0 +1,134 @@
+
+These imports appear to be undeclared dependencies:
+- 'IPython'
+- 'PIL'
+- '_plotly_utils'
+- 'cx_Freeze'
+- 'google'
+- 'matplotlib'
+- 'py2exe'
+- 'setuptools'
+- 'skimage'
+- 'traitlets'
+- 'vaex'
+- 'vincent'
+
+These dependencies appear to be unused (i.e. not imported):
+- 'backports.tempfile'
+- 'black'
+- 'coverage'
+- 'cufflinks'
+- 'dash-bio'
+- 'datashader'
+- 'geopandas'
+- 'ipykernel'
+- 'ipython'
+- 'jinja2'
+- 'jupyter'
+- 'jupyter-client'
+- 'jupyterlab'
+- 'jupytext'
+- 'kaleido'
+- 'nbconvert'
+- 'networkx'
+- 'notebook'
+- 'orjson'
+- 'parmed'
+- 'pathlib'
+- 'patsy'
+- 'pillow'
+- 'plotly'
+- 'plotly-geo'
+- 'pooch'
+- 'pre-commit'
+- 'pyarrow'
+- 'pyshp'
+- 'python-frontmatter'
+- 'python-igraph'
+- 'recommonmark'
+- 'scikit-image'
+- 'scikit-learn'
+- 'shapely'
+- 'sphinx'
+- 'squarify'
+- 'umap-learn'
+- 'wget'
+
+
+All imports:
+Cython
+IPython
+OpenSSL
+PIL
+__main__
+__pypy__
+_abcoll
+_aix_support
+_collections_abc
+_frozen_importlib
+_frozen_importlib_external
+_imp
+_osx_support
+_plotly_utils
+_ssl
+attr
+brotli
+colorama
+colorcet
+com
+cryptography
+ctags
+cx_Freeze
+cython
+docutils
+dotenv
+email_validator
+google
+hypothesis
+inflect
+ipywidgets
+java
+jinja2
+jnius
+keyring
+lockfile
+lxml
+matplotlib
+mock
+mypy_extensions
+ntlm
+numpy
+ordereddict
+org
+packaging
+pandas
+pip_api
+pipreqs
+polars
+psutil
+py2exe
+pylama
+pytest
+pytz
+railroad
+requests
+requirementslib
+retrying
+scipy
+setuptools
+skimage
+sphinx
+sphinx_bootstrap_theme
+statsmodels
+tenacity
+toml
+tornado
+traitlets
+vaex
+vincent
+win32api
+win32com
+win32con
+xarray
+
+
