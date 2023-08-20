@@ -1,0 +1,10 @@
+[project]
+name = "nltk"
+source_url = "https://github.com/nltk/nltk.git"
+version = "0.12.1"
+
+[experiment]
+imports = [ "markdown_it", "setuptools", "joblib", "regex", "numpypy", "pandas", "sklearn", "click", "norm", "scipy", "pycrfsuite", "epydoc", "bllipparser", "jinja2", "mdit_py_plugins", "yaml", "matplotlib", "pyparsing", "twython", "svgling", "numpy", "requests", "pygame", "mdit_plain", "networkx", "tqdm", "pytest",]
+declared_deps = [ "pylint", "pytest", "pytest-cov", "pytest-mock", "tox", "click", "gensim", "markdown-it-py", "matplotlib", "mdit-plain", "mdit-py-plugins", "pytest", "pytest-mock", "pytest-xdist", "pyyaml", "regex", "scikit-learn", "tqdm", "twython", "click", "joblib", "regex", "tqdm", "scikit-learn", "python-crfsuite", "requests", "numpy", "pyparsing", "twython", "scipy", "matplotlib", "requests", "numpy", "python-crfsuite", "scikit-learn", "scipy", "matplotlib", "pyparsing", "twython", "click", "joblib", "regex", "tqdm", "numpy", "python-crfsuite", "scikit-learn", "scipy", "matplotlib", "pyparsing", "twython", "requests",]
+undeclared_deps = [ "bllipparser", "epydoc", "jinja2", "markdown_it", "networkx", "norm", "numpypy", "pandas", "pycrfsuite", "pygame", "setuptools", "sklearn", "svgling", "yaml",]
+unused_deps = [ "gensim", "markdown-it-py", "pylint", "pytest-cov", "pytest-mock", "pytest-xdist", "python-crfsuite", "pyyaml", "scikit-learn", "tox",]

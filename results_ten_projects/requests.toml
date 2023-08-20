@@ -1,0 +1,10 @@
+[project]
+name = "requests"
+source_url = "https://github.com/psf/requests.git"
+version = "0.12.1"
+
+[experiment]
+imports = [ "idna", "certifi", "OpenSSL", "setuptools", "simplejson", "urllib3", "trustme", "charset_normalizer", "cryptography", "chardet", "pygments", "pytest",]
+declared_deps = [ "charset_normalizer", "idna", "urllib3", "certifi", "PySocks", "chardet", "charset-normalizer", "idna", "urllib3", "certifi", "PySocks", "chardet", "pytest", "pytest-cov", "pytest-httpbin", "httpbin", "trustme", "wheel", "cryptography", "Sphinx",]
+undeclared_deps = [ "OpenSSL", "pygments", "setuptools", "simplejson",]
+unused_deps = [ "PySocks", "Sphinx", "httpbin", "pytest-cov", "pytest-httpbin", "wheel",]

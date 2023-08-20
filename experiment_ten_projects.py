@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 
+import toml
 from autoproject import FawltyInPractice
 
 if __name__ == '__main__':
@@ -29,15 +31,37 @@ if __name__ == '__main__':
         fawlty_exp = FawltyInPractice(package_name, save_loc)
         fawlty_exp.clone_package()
         
-        out_check, err_check = fawlty_exp.run_fawlty_deps()
-        out_imports, err_imports = fawlty_exp.run_fawlty_deps(fawlty_optins=['--list-imports'])
+        out_check, err_check = fawlty_exp.run_fawlty_deps(['--json'])
         
-        out_check = out_check.replace('For a more verbose report re-run with the `--detailed` option.', '')
-        out_imports = out_imports.replace('For a more verbose report re-run with the `--detailed` option.', '')
+        results = json.loads(out_check)
+        del results['resolved_deps'], results['settings']
         
-        report = out_check
-        report += f'All imports:\n{out_imports}'
+        keys_to_change = [
+            'declared_deps',
+            'imports',
+            'undeclared_deps',
+            'unused_deps'
+            ]
         
-        with open(f'{save_result}/{package_name}.txt', 'w') as file:
-            file.write(report)
+        for key in keys_to_change:
+            results[key] = [*map(lambda x: x['name'], results[key])]
+        
+        exp_info = {
+            'project': {
+                'name': package_name,
+                'source_url': fawlty_exp.source_url,
+                'version': results['version']
+                },
+            'experiment': {
+                'imports': list(set(results['imports'])),
+                'declared_deps': results['declared_deps'],
+                'undeclared_deps': results['undeclared_deps'],
+                'unused_deps': results['unused_deps']
+                }
+                
+            }
+        
+        file_name = f'{save_result}/{package_name}.toml'
+        with open(file_name, "w") as toml_file:
+            toml.dump(exp_info, toml_file)
         
