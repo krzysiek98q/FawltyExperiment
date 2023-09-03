@@ -28,18 +28,29 @@ class FawltyInPractice:
     save_requires: bool
         Information whether to create a 'requirements.txt' file based on the PyPI repository API
         when cloning the repository.
+        
+    no_repo_address: {'error', 'manual'}
+        How to deal with missing repository address in API PyPI:
+            - 'error' - do not execute codes and return an exception;
+            - 'manual' - will ask you to manually enter the address of the repository.
+        
     """
     
     def __init__(
             self, 
             package_name: str,
             save_location: str,
-            save_requires: bool=True
+            save_requires: bool=True,
+            no_repo_address: str='error'
             ):
         
         self.package_name = package_name
         self.save_location = save_location
         self.save_requires = save_requires
+        
+        assert no_repo_address in ['error', 'manual']
+        self.no_repo_address = no_repo_address
+        
         self.__get_pypi_info()
         
         self.venv_loc = f'{self.save_location}/venv'
@@ -90,6 +101,7 @@ class FawltyInPractice:
         fawlty_cmd = [self.venv_python, '-m', 'fawltydeps', self.save_location]
         if fawlty_optins is not None:
             fawlty_cmd.extend(fawlty_optins)
+            
         return self.__terminal(fawlty_cmd)
         
         
@@ -104,9 +116,21 @@ class FawltyInPractice:
         
         package_urls = self.package_pypi['info']['project_urls'].values()
         package_urls = [*filter(lambda x: bool(re.search(r'github\.com|gitlab\.com', x)), package_urls)]
-        self.source_url = min(package_urls, key=len) 
-        self.source_url = self.source_url[:-1] if self.source_url[-1] == '/' else self.source_url
-        self.source_url += '.git'
+        
+        if len(package_urls) > 0:
+            self.source_url = min(package_urls, key=len) 
+            self.source_url = self.source_url[:-1] if self.source_url[-1] == '/' else self.source_url
+            self.source_url += '.git'
+            
+        else:
+            if self.no_repo_address == 'error':
+                raise Exception('no address in the PyPI repository')
+                
+            elif self.no_repo_address == 'manual':
+                self.source_url = input(
+                    'Specify the address of the library\'s repository (with .git at the end): '
+                    )
+            
         
         pypi_requires = self.package_pypi['info']['requires_dist']
         self.pypi_requires = [*map(lambda x: re.sub(r';\s.*', '', x), pypi_requires)] if pypi_requires is not None else []
