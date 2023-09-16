@@ -57,7 +57,12 @@ class FawltyInPractice:
         self.venv_python = f'{self.venv_loc}/bin/python3'
     
     
-    def clone_package(self, create_venv:bool=True, install_fawlty:bool=True):
+    def clone_package(
+            self, 
+            create_venv:bool=True, 
+            install_requires:bool=True,
+            install_fawlty:bool=True
+            ):
         """Clones the library repository. The url of the package repository 
         is searched for in PyPI. This is the shortest string of url found, 
         which includes github.com or gitlab.com.
@@ -68,10 +73,14 @@ class FawltyInPractice:
             Decision whether to install a virtual environment after 
             cloning the package. For automatic package testing to make sense,
             this parameter should be set to True.
+            
+        install_requires: bool
+            Parameter to determine whether to install the requirements found in PyPI.
         
         install_fawlty: bool
             Decision whether, after creating a virtual environment, to install FawltyDeps in it.
         """
+        
         Repo.clone_from(self.source_url, self.save_location)
         
         if self.save_requires:
@@ -84,23 +93,28 @@ class FawltyInPractice:
             self.venv_out, self.venv_err = self.__terminal(create_cmd)
             
             if install_fawlty:
-                install_cmd = [self.venv_python, '-m', 'pip', 'install', 'fawltydeps']
-                self.fawlty_install_out, self.fawlty_install_err = self.__terminal(install_cmd)
+                install_fd_cmd = [self.venv_python, '-m', 'pip', 'install', 'fawltydeps']
+                self.fawlty_install_out, self.fawlty_install_err = self.__terminal(install_fd_cmd)
+                
+            if install_requires:
+                install_req_cmd = [self.venv_python, '-m', 'pip', 'install', 'requires_text']
+                self.req_install_out, self.req_install_err = self.__terminal(install_req_cmd)
     
-    def run_fawlty_deps(self, fawlty_optins:list=None):
+    
+    def run_fawlty_deps(self, fawlty_options:list=None):
         """Starts FawltyDeps at the location of the package's working directory. 
         
         Parameters
         ----------
-        fawlty_optins: bool
+        fawlty_options: bool
             Optional options for running fawlty deps. In the absence of additional options, 
             runs the command: 'python_loc -m fawltydeps work_dir'.
         
         """
         
         fawlty_cmd = [self.venv_python, '-m', 'fawltydeps', self.save_location]
-        if fawlty_optins is not None:
-            fawlty_cmd.extend(fawlty_optins)
+        if fawlty_options is not None:
+            fawlty_cmd.extend(fawlty_options)
             
         return self.__terminal(fawlty_cmd)
         
