@@ -61,7 +61,8 @@ class FawltyInPractice:
             self, 
             create_venv:bool=True, 
             install_requires:bool=True,
-            install_fawlty:bool=True
+            install_fawlty:bool=True,
+            fawlty_version:str=None
             ):
         """Clones the library repository. The url of the package repository 
         is searched for in PyPI. This is the shortest string of url found, 
@@ -79,6 +80,10 @@ class FawltyInPractice:
         
         install_fawlty: bool
             Decision whether, after creating a virtual environment, to install FawltyDeps in it.
+            
+        fawlty_version: bool
+            Allows you to specify the version of FawltyDeps used for the experiment. 
+            Parameter valid only when 'install_fawlty' parameter is set to True.
         """
         
         Repo.clone_from(self.source_url, self.save_location)
@@ -92,8 +97,11 @@ class FawltyInPractice:
             create_cmd = ["python3", '-m', "venv", self.venv_loc]
             self.venv_out, self.venv_err = self.__terminal(create_cmd)
             
+            
             if install_fawlty:
-                install_fd_cmd = [self.venv_python, '-m', 'pip', 'install', 'fawltydeps']
+                fawlty_cmd_version = 'fawltydeps' if fawlty_version is None else f'fawltydeps=={fawlty_version}'
+                
+                install_fd_cmd = [self.venv_python, '-m', 'pip', 'install', fawlty_cmd_version]
                 self.fawlty_install_out, self.fawlty_install_err = self.__terminal(install_fd_cmd)
                 
             if install_requires:
