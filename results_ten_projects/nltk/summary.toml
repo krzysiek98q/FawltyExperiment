@@ -1,0 +1,26 @@
+[project]
+name = "nltk"
+source_url = "https://github.com/nltk/nltk.git"
+nltk_version = "3.8.1"
+
+[launching_fawltydeps]
+fawltydeps_version = "0.13.0"
+
+[experiment_result]
+"number of warnings" = 0
+imports = [ "pygame", "tqdm", "scipy", "pytest", "networkx", "yaml", "joblib", "click", "mdit_plain", "norm", "numpypy", "markdown_it", "matplotlib", "regex", "sklearn", "twython", "pycrfsuite", "numpy", "pandas", "mdit_py_plugins", "pyparsing", "bllipparser", "svgling", "requests",]
+declared_deps = [ "click", "joblib", "regex", "tqdm", "scikit-learn", "python-crfsuite", "requests", "numpy", "pyparsing", "twython", "scipy", "matplotlib", "requests", "numpy", "python-crfsuite", "scikit-learn", "scipy", "matplotlib", "pyparsing", "twython",]
+undeclared_deps = [ "bllipparser", "markdown_it", "mdit_plain", "mdit_py_plugins", "networkx", "norm", "numpypy", "pandas", "pycrfsuite", "pygame", "pytest", "sklearn", "svgling", "yaml",]
+unused_deps = [ "python-crfsuite", "scikit-learn",]
+
+[launching_fawltydeps.settings]
+actions = [ "check_undeclared", "check_unused",]
+output_format = "json"
+code = [ ".repositories/nltk/nltk",]
+deps = [ ".repositories/nltk/nltk",]
+pyenvs = [ ".repositories/nltk/nltk",]
+ignore_undeclared = []
+ignore_unused = []
+install_deps = false
+verbosity = 0
+custom_mapping_file = []

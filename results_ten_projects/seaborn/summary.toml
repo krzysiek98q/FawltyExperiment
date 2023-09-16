@@ -1,0 +1,26 @@
+[project]
+name = "seaborn"
+source_url = "https://github.com/mwaskom/seaborn.git"
+seaborn_version = "0.12.2"
+
+[launching_fawltydeps]
+fawltydeps_version = "0.13.0"
+
+[experiment_result]
+"number of warnings" = 0
+imports = [ "sphinx", "cycler", "ipywidgets", "scipy", "fastcluster", "typing_extensions", "statsmodels", "com", "numpy", "win32com", "win32api", "PIL", "matplotlib", "pandas",]
+declared_deps = [ "numpy", "pandas", "matplotlib", "typing_extensions", "pytest", "pytest-cov", "pytest-xdist", "flake8", "mypy", "pandas-stubs", "pre-commit", "flit", "numpydoc", "nbconvert", "ipykernel", "sphinx-copybutton", "sphinx-issues", "sphinx-design", "pyyaml", "pydata_sphinx_theme", "scipy", "statsmodels",]
+undeclared_deps = [ "PIL", "com", "cycler", "fastcluster", "ipywidgets", "sphinx", "win32api", "win32com",]
+unused_deps = [ "flake8", "flit", "ipykernel", "mypy", "nbconvert", "numpydoc", "pandas-stubs", "pre-commit", "pydata_sphinx_theme", "pytest", "pytest-cov", "pytest-xdist", "pyyaml", "sphinx-copybutton", "sphinx-design", "sphinx-issues",]
+
+[launching_fawltydeps.settings]
+actions = [ "check_undeclared", "check_unused",]
+output_format = "json"
+code = [ ".repositories/seaborn/seaborn",]
+deps = [ ".repositories/seaborn/seaborn",]
+pyenvs = [ ".repositories/seaborn/seaborn",]
+ignore_undeclared = []
+ignore_unused = []
+install_deps = false
+verbosity = 0
+custom_mapping_file = []

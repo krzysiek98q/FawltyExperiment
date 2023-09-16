@@ -1,0 +1,26 @@
+[project]
+name = "pandas"
+source_url = "https://github.com/pandas-dev/pandas.git"
+pandas_version = "2.1.0"
+
+[launching_fawltydeps]
+fawltydeps_version = "0.13.0"
+
+[experiment_result]
+"number of warnings" = 0
+imports = [ "traitlets", "qtpy", "scipy", "pylab", "sqlalchemy", "PyQt5", "pytest", "numba", "boto3", "xlsxwriter", "odf", "Foundation", "dask", "dateutil", "pyarrow", "lxml", "python_calamine", "openpyxl", "matplotlib", "_csv", "xlrd", "sklearn", "__main__", "xarray", "botocore", "markupsafe", "numpy", "py", "numexpr", "tables", "pytz", "cycler", "s3fs", "fastparquet", "hypothesis", "PyQt4", "typing_extensions", "AppKit", "pyxlsb", "IPython", "google", "fsspec", "bs4", "mpl_toolkits",]
+declared_deps = [ "numpy", "numpy", "python-dateutil", "pytz", "tzdata", "hypothesis", "pytest", "pytest-xdist", "pytest-asyncio", "bottleneck", "numba", "numexpr", "scipy", "xarray", "fsspec", "s3fs", "gcsfs", "pandas-gbq", "odfpy", "openpyxl", "pyxlsb", "xlrd", "xlsxwriter", "pyarrow", "pyarrow", "tables", "pyreadstat", "SQLAlchemy", "psycopg2", "SQLAlchemy", "pymysql", "SQLAlchemy", "beautifulsoup4", "html5lib", "lxml", "lxml", "matplotlib", "jinja2", "tabulate", "PyQt5", "qtpy", "zstandard", "dataframe-api-compat", "beautifulsoup4", "bottleneck", "dataframe-api-compat", "fastparquet", "fsspec", "gcsfs", "html5lib", "hypothesis", "jinja2", "lxml", "matplotlib", "numba", "numexpr", "odfpy", "openpyxl", "pandas-gbq", "psycopg2", "pyarrow", "pymysql", "PyQt5", "pyreadstat", "pytest", "pytest-xdist", "pytest-asyncio", "pyxlsb", "qtpy", "scipy", "s3fs", "SQLAlchemy", "tables", "tabulate", "xarray", "xlrd", "xlsxwriter", "zstandard",]
+undeclared_deps = [ "AppKit", "Foundation", "IPython", "PyQt4", "PyQt5", "__main__", "_csv", "boto3", "botocore", "bs4", "cycler", "dask", "dateutil", "google", "markupsafe", "mpl_toolkits", "odf", "py", "pylab", "python_calamine", "sklearn", "traitlets", "typing_extensions",]
+unused_deps = [ "PyQt5", "beautifulsoup4", "bottleneck", "dataframe-api-compat", "gcsfs", "html5lib", "jinja2", "odfpy", "pandas-gbq", "psycopg2", "pymysql", "pyreadstat", "pytest-asyncio", "pytest-xdist", "python-dateutil", "tabulate", "tzdata", "zstandard",]
+
+[launching_fawltydeps.settings]
+actions = [ "check_undeclared", "check_unused",]
+output_format = "json"
+code = [ ".repositories/pandas/pandas",]
+deps = [ ".repositories/pandas/pandas",]
+pyenvs = [ ".repositories/pandas/pandas",]
+ignore_undeclared = []
+ignore_unused = []
+install_deps = false
+verbosity = 0
+custom_mapping_file = []

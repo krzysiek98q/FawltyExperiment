@@ -41,10 +41,12 @@ class FawltyInPractice:
             package_name: str,
             save_location: str,
             save_requires: bool=True,
-            no_repo_address: str='error'
+            no_repo_address: str='error',
+            mapping_name: str=None
             ):
         
         self.package_name = package_name
+        self.mapping_name = package_name.lower() if mapping_name is None else mapping_name
         self.save_location = save_location
         self.save_requires = save_requires
         
@@ -53,14 +55,14 @@ class FawltyInPractice:
         
         self.__get_pypi_info()
         
-        self.venv_loc = f'{self.save_location}/venv'
+        self.venv_loc = f'{self.save_location}/{self.mapping_name}/venv'
         self.venv_python = f'{self.venv_loc}/bin/python3'
     
     
     def clone_package(
             self, 
             create_venv:bool=True, 
-            install_requires:bool=True,
+            install_requires:bool=False,
             install_fawlty:bool=True,
             fawlty_version:str=None
             ):
@@ -90,7 +92,7 @@ class FawltyInPractice:
         
         if self.save_requires:
             requires_text = '\n'.join(self.pypi_requires)
-            requires_path = f'{self.save_location}/requirements.txt'
+            requires_path = f'{self.save_location}/{self.mapping_name}/requirements.txt'
             with open(requires_path, 'w') as file:
                 file.write(requires_text)
         if create_venv:
@@ -120,7 +122,7 @@ class FawltyInPractice:
         
         """
         
-        fawlty_cmd = [self.venv_python, '-m', 'fawltydeps', self.save_location]
+        fawlty_cmd = [self.venv_python, '-m', 'fawltydeps', self.save_location + f'/{self.mapping_name}']
         if fawlty_options is not None:
             fawlty_cmd.extend(fawlty_options)
             
@@ -146,7 +148,7 @@ class FawltyInPractice:
             
         else:
             if self.no_repo_address == 'error':
-                raise Exception('no address in the PyPI repository')
+                raise Exception(f'address not found in PyPI repository (for library {self.package_name})')
                 
             elif self.no_repo_address == 'manual':
                 self.source_url = input(
