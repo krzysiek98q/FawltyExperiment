@@ -83,19 +83,71 @@ if __name__ == "__main__":
 ```
 ## cvxopt
 ### 1.
-**path**: `.repositories/statsmodels/statsmodels/regression/tests/test_regression.py`
-**line number**: 40
+**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
+**line number**: 56
 ```python
-try:
-    import cvxopt  # noqa:F401
+    """
+    from cvxopt import solvers, matrix
 
-    has_cvxopt = True
-except ImportError:
-    has_cvxopt = False
+    start_params = np.array(start_params).ravel('F')
 
+    ## Extract arguments
+    # k_params is total number of covariates, possibly including a leading constant.
 
 ```
 ### 2.
+**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
+**line number**: 147
+```python
+    """
+    from cvxopt import matrix
+
+    x_arr = np.asarray(x)
+    params = x_arr[:k_params].ravel()
+    u = x_arr[k_params:]
+    # Call the numpy version
+
+```
+### 3.
+**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
+**line number**: 162
+```python
+    """
+    from cvxopt import matrix
+
+    x_arr = np.asarray(x)
+    params = x_arr[:k_params].ravel()
+    # Call the numpy version
+    # The derivative just appends a vector of constants
+
+```
+### 4.
+**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
+**line number**: 177
+```python
+    """
+    from cvxopt import matrix
+
+    I = np.eye(k_params)  # noqa:E741
+    A = np.concatenate((-I, -I), axis=1)
+    B = np.concatenate((I, -I), axis=1)
+    C = np.concatenate((A, B), axis=0)
+
+```
+### 5.
+**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
+**line number**: 194
+```python
+    """
+    from cvxopt import matrix
+
+    x_arr = np.asarray(x)
+    params = x_arr[:k_params].ravel()
+    zh_x = np.asarray(z[0]) * hess(params)
+    zero_mat = np.zeros(zh_x.shape)
+
+```
+### 6.
 **path**: `.repositories/statsmodels/statsmodels/stats/tests/test_knockoff.py`
 **line number**: 11
 ```python
@@ -108,20 +160,7 @@ except ImportError:
 
 
 ```
-### 3.
-**path**: `.repositories/statsmodels/statsmodels/discrete/discrete_model.py`
-**line number**: 51
-```python
-try:
-    import cvxopt  # noqa:F401
-    have_cvxopt = True
-except ImportError:
-    have_cvxopt = False
-
-
-
-```
-### 4.
+### 7.
 **path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
 **line number**: 1166
 ```python
@@ -134,7 +173,7 @@ except ImportError:
         bp = x[1:p+1]
 
 ```
-### 5.
+### 8.
 **path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
 **line number**: 1143
 ```python
@@ -145,45 +184,6 @@ except ImportError:
             raise ValueError(msg)
 
         n = len(self.endog)
-
-```
-### 6.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 89
-```python
-    try:
-        from cvxopt import info
-        print("cvxopt: %s" % safe_version(info, 'version'))
-    except ImportError:
-        print("cvxopt: Not installed")
-
-    try:
-
-```
-### 7.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 232
-```python
-    try:
-        from cvxopt import info
-        print("cvxopt: %s (%s)" % (safe_version(info, 'version'),
-                                   dirname(info.__file__)))
-    except ImportError:
-        print("cvxopt: Not installed")
-
-
-```
-### 8.
-**path**: `.repositories/statsmodels/statsmodels/discrete/tests/test_discrete.py`
-**line number**: 54
-```python
-try:
-    import cvxopt  # noqa:F401
-    has_cvxopt = True
-except ImportError:
-    has_cvxopt = False
-
-
 
 ```
 ### 9.
@@ -200,68 +200,68 @@ except ImportError:
 
 ```
 ### 10.
-**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
-**line number**: 56
+**path**: `.repositories/statsmodels/statsmodels/discrete/discrete_model.py`
+**line number**: 51
 ```python
-    """
-    from cvxopt import solvers, matrix
+try:
+    import cvxopt  # noqa:F401
+    have_cvxopt = True
+except ImportError:
+    have_cvxopt = False
 
-    start_params = np.array(start_params).ravel('F')
 
-    ## Extract arguments
-    # k_params is total number of covariates, possibly including a leading constant.
 
 ```
 ### 11.
-**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
-**line number**: 147
+**path**: `.repositories/statsmodels/statsmodels/regression/tests/test_regression.py`
+**line number**: 40
 ```python
-    """
-    from cvxopt import matrix
+try:
+    import cvxopt  # noqa:F401
 
-    x_arr = np.asarray(x)
-    params = x_arr[:k_params].ravel()
-    u = x_arr[k_params:]
-    # Call the numpy version
+    has_cvxopt = True
+except ImportError:
+    has_cvxopt = False
+
 
 ```
 ### 12.
-**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
-**line number**: 162
+**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
+**line number**: 89
 ```python
-    """
-    from cvxopt import matrix
+    try:
+        from cvxopt import info
+        print("cvxopt: %s" % safe_version(info, 'version'))
+    except ImportError:
+        print("cvxopt: Not installed")
 
-    x_arr = np.asarray(x)
-    params = x_arr[:k_params].ravel()
-    # Call the numpy version
-    # The derivative just appends a vector of constants
+    try:
 
 ```
 ### 13.
-**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
-**line number**: 177
+**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
+**line number**: 232
 ```python
-    """
-    from cvxopt import matrix
+    try:
+        from cvxopt import info
+        print("cvxopt: %s (%s)" % (safe_version(info, 'version'),
+                                   dirname(info.__file__)))
+    except ImportError:
+        print("cvxopt: Not installed")
 
-    I = np.eye(k_params)  # noqa:E741
-    A = np.concatenate((-I, -I), axis=1)
-    B = np.concatenate((I, -I), axis=1)
-    C = np.concatenate((A, B), axis=0)
 
 ```
 ### 14.
-**path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
-**line number**: 194
+**path**: `.repositories/statsmodels/statsmodels/discrete/tests/test_discrete.py`
+**line number**: 54
 ```python
-    """
-    from cvxopt import matrix
+try:
+    import cvxopt  # noqa:F401
+    has_cvxopt = True
+except ImportError:
+    has_cvxopt = False
 
-    x_arr = np.asarray(x)
-    params = x_arr[:k_params].ravel()
-    zh_x = np.asarray(z[0]) * hess(params)
-    zero_mat = np.zeros(zh_x.shape)
+
 
 ```
 ## dateutil
@@ -645,19 +645,6 @@ from finance import msft, ibm  # hack to make it run as standalone
 ```
 ## sklearn
 ### 1.
-**path**: `.repositories/statsmodels/statsmodels/tools/parallel.py`
-**line number**: 52
-```python
-        except ImportError:
-            from sklearn.externals.joblib import Parallel, delayed
-
-        parallel = Parallel(n_jobs, verbose=verbose)
-        my_func = delayed(func)
-
-        if n_jobs == -1:
-
-```
-### 2.
 **path**: `.repositories/statsmodels/statsmodels/tsa/ardl/_pss_critical_values/pss-process.py`
 **line number**: 8
 ```python
@@ -670,7 +657,7 @@ if __name__ == "__main__":
     from sklearn.model_selection import cross_val_score
 
 ```
-### 3.
+### 2.
 **path**: `.repositories/statsmodels/statsmodels/tsa/ardl/_pss_critical_values/pss-process.py`
 **line number**: 12
 ```python
@@ -683,7 +670,7 @@ if __name__ == "__main__":
 
 
 ```
-### 4.
+### 3.
 **path**: `.repositories/statsmodels/statsmodels/tsa/ardl/_pss_critical_values/pss-process.py`
 **line number**: 13
 ```python
@@ -696,7 +683,7 @@ if __name__ == "__main__":
     files = glob.glob(os.path.join(PATH, "*.npz"))
 
 ```
-### 5.
+### 4.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
 **line number**: 81
 ```python
@@ -709,7 +696,7 @@ except ImportError:
 
 
 ```
-### 6.
+### 5.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
 **line number**: 93
 ```python
@@ -722,7 +709,7 @@ if has_sklearn:
     corr_lw = cov2corr(cov_lw)
 
 ```
-### 7.
+### 6.
 **path**: `.repositories/statsmodels/statsmodels/examples/l1_demo/sklearn_compare.py`
 **line number**: 23
 ```python
@@ -733,6 +720,19 @@ import statsmodels.api as sm
 
 ## Decide which dataset to use
 # Use either spector or anes96
+
+```
+### 7.
+**path**: `.repositories/statsmodels/statsmodels/tools/parallel.py`
+**line number**: 52
+```python
+        except ImportError:
+            from sklearn.externals.joblib import Parallel, delayed
+
+        parallel = Parallel(n_jobs, verbose=verbose)
+        my_func = delayed(func)
+
+        if n_jobs == -1:
 
 ```
 ## sympy

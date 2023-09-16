@@ -66,19 +66,6 @@ from seaborn._core.moves import Move
 ```
 ## cycler
 ### 1.
-**path**: `.repositories/seaborn/seaborn/rcmod.py`
-**line number**: 4
-```python
-import matplotlib as mpl
-from cycler import cycler
-from . import palettes
-
-
-__all__ = ["set_theme", "set", "reset_defaults", "reset_orig",
-           "axes_style", "set_style", "plotting_context", "set_context",
-
-```
-### 2.
 **path**: `.repositories/seaborn/seaborn/_core/plot.py`
 **line number**: 16
 ```python
@@ -89,6 +76,19 @@ from pandas import DataFrame, Series, Index
 import matplotlib as mpl
 from matplotlib.axes import Axes
 from matplotlib.artist import Artist
+
+```
+### 2.
+**path**: `.repositories/seaborn/seaborn/rcmod.py`
+**line number**: 4
+```python
+import matplotlib as mpl
+from cycler import cycler
+from . import palettes
+
+
+__all__ = ["set_theme", "set", "reset_defaults", "reset_orig",
+           "axes_style", "set_style", "plotting_context", "set_context",
 
 ```
 ## fastcluster

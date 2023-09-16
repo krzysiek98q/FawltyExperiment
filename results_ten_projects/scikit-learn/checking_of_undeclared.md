@@ -54,19 +54,6 @@
 
 ```
 ### 2.
-**path**: `.repositories/scikit-learn/sklearn/datasets/_base.py`
-**line number**: 1268
-```python
-    try:
-        from PIL import Image
-    except ImportError:
-        raise ImportError(
-            "The Python Imaging Library (PIL) is required to load data "
-            "from jpeg files. Please refer to "
-            "https://pillow.readthedocs.io/en/stable/installation.html "
-
-```
-### 3.
 **path**: `.repositories/scikit-learn/sklearn/conftest.py`
 **line number**: 213
 ```python
@@ -77,6 +64,19 @@
     except ImportError:
         pillow_installed = False
 
+
+```
+### 3.
+**path**: `.repositories/scikit-learn/sklearn/datasets/_base.py`
+**line number**: 1268
+```python
+    try:
+        from PIL import Image
+    except ImportError:
+        raise ImportError(
+            "The Python Imaging Library (PIL) is required to load data "
+            "from jpeg files. Please refer to "
+            "https://pillow.readthedocs.io/en/stable/installation.html "
 
 ```
 ### 4.
@@ -108,19 +108,6 @@ from sklearn.datasets import (
 ```
 ## array_api_compat
 ### 1.
-**path**: `.repositories/scikit-learn/sklearn/utils/_testing.py`
-**line number**: 1079
-```python
-    try:
-        import array_api_compat  # noqa
-    except ImportError:
-        raise SkipTest(
-            "array_api_compat is not installed: not checking array_api input"
-        )
-
-
-```
-### 2.
 **path**: `.repositories/scikit-learn/sklearn/utils/_array_api.py`
 **line number**: 411
 ```python
@@ -133,7 +120,7 @@ from sklearn.datasets import (
     # between implementations
 
 ```
-### 3.
+### 2.
 **path**: `.repositories/scikit-learn/sklearn/utils/_array_api.py`
 **line number**: 61
 ```python
@@ -144,6 +131,19 @@ from sklearn.datasets import (
                 "array_api_compat is required to dispatch arrays using the API"
                 " specification"
             )
+
+```
+### 3.
+**path**: `.repositories/scikit-learn/sklearn/utils/_testing.py`
+**line number**: 1079
+```python
+    try:
+        import array_api_compat  # noqa
+    except ImportError:
+        raise SkipTest(
+            "array_api_compat is not installed: not checking array_api input"
+        )
+
 
 ```
 ## cupy

@@ -154,8 +154,9 @@ if __name__ == '__main__':
             md_file.write(report)
         
         # saving a file with a list of errors and warnings
-        report = report_warning(err_check)
-        report_file_name = f'{save_result}/{package_name}/warnings.md'
+        if err_check.count('WARNING') > 0:
+            report = report_warning(err_check)
+            report_file_name = f'{save_result}/{package_name}/warnings.md'
         
         with open(report_file_name, "w") as md_file:
             md_file.write(report)

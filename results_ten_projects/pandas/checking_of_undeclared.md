@@ -29,71 +29,6 @@
 ```
 ## IPython
 ### 1.
-**path**: `.repositories/pandas/pandas/tests/resample/test_resampler_grouper.py`
-**line number**: 31
-```python
-async def test_tab_complete_ipython6_warning(ip):
-    from IPython.core.completer import provisionalcompleter
-
-    code = dedent(
-        """\
-    import pandas._testing as tm
-    s = tm.makeTimeSeries()
-
-```
-### 2.
-**path**: `.repositories/pandas/pandas/tests/indexes/test_base.py`
-**line number**: 1225
-```python
-        pytest.importorskip("IPython", minversion="6.0.0")
-        from IPython.core.completer import provisionalcompleter
-
-        code = "import pandas as pd; idx = pd.Index([1, 2])"
-        await ip.run_code(code)
-
-        # GH 31324 newer jedi version raises Deprecation warning;
-
-```
-### 3.
-**path**: `.repositories/pandas/pandas/io/formats/printing.py`
-**line number**: 246
-```python
-        return
-    from IPython import get_ipython
-
-    ip = get_ipython()
-    if ip is None:
-        # still not in IPython
-        return
-
-```
-### 4.
-**path**: `.repositories/pandas/pandas/io/formats/printing.py`
-**line number**: 259
-```python
-            # define tableschema formatter
-            from IPython.core.formatters import BaseFormatter
-            from traitlets import ObjectName
-
-            class TableSchemaFormatter(BaseFormatter):
-                print_method = ObjectName("_repr_data_resource_")
-                _return_type = (dict,)
-
-```
-### 5.
-**path**: `.repositories/pandas/pandas/tests/frame/test_api.py`
-**line number**: 295
-```python
-        pytest.importorskip("IPython", minversion="6.0.0")
-        from IPython.core.completer import provisionalcompleter
-
-        if frame_or_series is DataFrame:
-            code = "from pandas import DataFrame; obj = DataFrame()"
-        else:
-            code = "from pandas import Series; obj = Series(dtype=object)"
-
-```
-### 6.
 **path**: `.repositories/pandas/pandas/conftest.py`
 **line number**: 1848
 ```python
@@ -106,7 +41,59 @@ async def test_tab_complete_ipython6_warning(ip):
     c = Config()
 
 ```
-### 7.
+### 2.
+**path**: `.repositories/pandas/pandas/io/formats/printing.py`
+**line number**: 246
+```python
+        return
+    from IPython import get_ipython
+
+    ip = get_ipython()
+    if ip is None:
+        # still not in IPython
+        return
+
+```
+### 3.
+**path**: `.repositories/pandas/pandas/io/formats/printing.py`
+**line number**: 259
+```python
+            # define tableschema formatter
+            from IPython.core.formatters import BaseFormatter
+            from traitlets import ObjectName
+
+            class TableSchemaFormatter(BaseFormatter):
+                print_method = ObjectName("_repr_data_resource_")
+                _return_type = (dict,)
+
+```
+### 4.
+**path**: `.repositories/pandas/pandas/tests/frame/test_api.py`
+**line number**: 295
+```python
+        pytest.importorskip("IPython", minversion="6.0.0")
+        from IPython.core.completer import provisionalcompleter
+
+        if frame_or_series is DataFrame:
+            code = "from pandas import DataFrame; obj = DataFrame()"
+        else:
+            code = "from pandas import Series; obj = Series(dtype=object)"
+
+```
+### 5.
+**path**: `.repositories/pandas/pandas/tests/indexes/test_base.py`
+**line number**: 1225
+```python
+        pytest.importorskip("IPython", minversion="6.0.0")
+        from IPython.core.completer import provisionalcompleter
+
+        code = "import pandas as pd; idx = pd.Index([1, 2])"
+        await ip.run_code(code)
+
+        # GH 31324 newer jedi version raises Deprecation warning;
+
+```
+### 6.
 **path**: `.repositories/pandas/pandas/tests/arrays/categorical/test_warnings.py`
 **line number**: 13
 ```python
@@ -117,6 +104,19 @@ async def test_tab_complete_ipython6_warning(ip):
         await ip.run_code(code)
 
         # GH 31324 newer jedi version raises Deprecation warning;
+
+```
+### 7.
+**path**: `.repositories/pandas/pandas/tests/resample/test_resampler_grouper.py`
+**line number**: 31
+```python
+async def test_tab_complete_ipython6_warning(ip):
+    from IPython.core.completer import provisionalcompleter
+
+    code = dedent(
+        """\
+    import pandas._testing as tm
+    s = tm.makeTimeSeries()
 
 ```
 ## PyQt4
@@ -326,59 +326,72 @@ def s3_resource(s3_base):
 ```
 ## dateutil
 ### 1.
-**path**: `.repositories/pandas/pandas/tests/indexing/test_loc.py`
-**line number**: 11
+**path**: `.repositories/pandas/pandas/conftest.py`
+**line number**: 39
 ```python
 
-from dateutil.tz import gettz
-import numpy as np
-import pytest
-
-from pandas.errors import IndexingError
-import pandas.util._test_decorators as td
+from dateutil.tz import (
+    tzlocal,
+    tzutc,
+)
+import hypothesis
+from hypothesis import strategies as st
 
 ```
 ### 2.
-**path**: `.repositories/pandas/pandas/core/indexes/datetimes.py`
-**line number**: 746
-```python
-        if isinstance(time, str):
-            from dateutil.parser import parse
-
-            time = parse(time).time()
-
-        if time.tzinfo:
-            if self.tz is None:
-
-```
-### 3.
-**path**: `.repositories/pandas/pandas/tests/tslibs/test_timezones.py`
-**line number**: 7
-```python
-
-import dateutil.tz
-import pytest
-import pytz
-
-from pandas._libs.tslibs import (
-    conversion,
-
-```
-### 4.
-**path**: `.repositories/pandas/pandas/tests/reshape/concat/test_datetimes.py`
-**line number**: 4
+**path**: `.repositories/pandas/pandas/tests/io/formats/test_format.py`
+**line number**: 20
 ```python
 
 import dateutil
 import numpy as np
 import pytest
+import pytz
+
+from pandas._config import config
+
+```
+### 3.
+**path**: `.repositories/pandas/pandas/tests/series/test_constructors.py`
+**line number**: 8
+```python
+
+from dateutil.tz import tzoffset
+import numpy as np
+from numpy import ma
+import pytest
+
+from pandas._libs import (
+
+```
+### 4.
+**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_formats.py`
+**line number**: 3
+```python
+
+import dateutil.tz
+import numpy as np
+import pytest
+import pytz
 
 import pandas as pd
-from pandas import (
 
 ```
 ### 5.
-**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_datetime.py`
+**path**: `.repositories/pandas/pandas/tests/io/json/test_ujson.py`
+**line number**: 10
+```python
+
+import dateutil
+import numpy as np
+import pytest
+import pytz
+
+import pandas._libs.json as ujson
+
+```
+### 6.
+**path**: `.repositories/pandas/pandas/tests/frame/methods/test_dropna.py`
 **line number**: 3
 ```python
 
@@ -390,42 +403,30 @@ import pandas as pd
 from pandas import (
 
 ```
-### 6.
-**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_to_period.py`
-**line number**: 1
-```python
-import dateutil.tz
-from dateutil.tz import tzlocal
-import pytest
-import pytz
-
-from pandas._libs.tslibs.ccalendar import MONTHS
-
-```
 ### 7.
-**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_to_period.py`
-**line number**: 2
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timestamp.py`
+**line number**: 13
 ```python
-import dateutil.tz
-from dateutil.tz import tzlocal
-import pytest
-import pytz
 
-from pandas._libs.tslibs.ccalendar import MONTHS
-from pandas._libs.tslibs.offsets import MonthEnd
+from dateutil.tz import (
+    tzlocal,
+    tzutc,
+)
+from hypothesis import (
+    given,
 
 ```
 ### 8.
-**path**: `.repositories/pandas/pandas/tests/io/formats/test_format.py`
-**line number**: 20
+**path**: `.repositories/pandas/pandas/tests/io/sas/test_sas7bdat.py`
+**line number**: 7
 ```python
 
-import dateutil
+import dateutil.parser
 import numpy as np
 import pytest
-import pytz
 
-from pandas._config import config
+from pandas.errors import EmptyDataError
+import pandas.util._test_decorators as td
 
 ```
 ### 9.
@@ -455,149 +456,6 @@ from pandas._libs.tslibs import (
 
 ```
 ### 11.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_unary_ops.py`
-**line number**: 3
-```python
-
-from dateutil.tz import gettz
-from hypothesis import (
-    given,
-    strategies as st,
-)
-import numpy as np
-
-```
-### 12.
-**path**: `.repositories/pandas/pandas/tests/frame/methods/test_dropna.py`
-**line number**: 3
-```python
-
-import dateutil
-import numpy as np
-import pytest
-
-import pandas as pd
-from pandas import (
-
-```
-### 13.
-**path**: `.repositories/pandas/pandas/tests/io/json/test_ujson.py`
-**line number**: 10
-```python
-
-import dateutil
-import numpy as np
-import pytest
-import pytz
-
-import pandas._libs.json as ujson
-
-```
-### 14.
-**path**: `.repositories/pandas/pandas/tests/series/test_constructors.py`
-**line number**: 8
-```python
-
-from dateutil.tz import tzoffset
-import numpy as np
-from numpy import ma
-import pytest
-
-from pandas._libs import (
-
-```
-### 15.
-**path**: `.repositories/pandas/pandas/tests/tseries/offsets/test_fiscal.py`
-**line number**: 6
-```python
-
-from dateutil.relativedelta import relativedelta
-import pytest
-
-from pandas import Timestamp
-from pandas.tests.tseries.offsets.common import (
-    WeekDay,
-
-```
-### 16.
-**path**: `.repositories/pandas/pandas/tests/io/sas/test_sas7bdat.py`
-**line number**: 7
-```python
-
-import dateutil.parser
-import numpy as np
-import pytest
-
-from pandas.errors import EmptyDataError
-import pandas.util._test_decorators as td
-
-```
-### 17.
-**path**: `.repositories/pandas/pandas/tests/tseries/offsets/test_common.py`
-**line number**: 3
-```python
-
-from dateutil.tz.tz import tzlocal
-import pytest
-
-from pandas._libs.tslibs import (
-    OutOfBoundsDatetime,
-    Timestamp,
-
-```
-### 18.
-**path**: `.repositories/pandas/pandas/tests/frame/test_reductions.py`
-**line number**: 5
-```python
-
-from dateutil.tz import tzlocal
-import numpy as np
-import pytest
-
-from pandas.compat import (
-    IS64,
-
-```
-### 19.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timezones.py`
-**line number**: 12
-```python
-
-import dateutil
-from dateutil.tz import (
-    gettz,
-    tzoffset,
-)
-import pytest
-
-```
-### 20.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timezones.py`
-**line number**: 13
-```python
-import dateutil
-from dateutil.tz import (
-    gettz,
-    tzoffset,
-)
-import pytest
-import pytz
-
-```
-### 21.
-**path**: `.repositories/pandas/pandas/tests/reshape/concat/test_append.py`
-**line number**: 4
-```python
-
-import dateutil
-import numpy as np
-import pytest
-
-import pandas as pd
-from pandas import (
-
-```
-### 22.
 **path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_constructors.py`
 **line number**: 11
 ```python
@@ -610,51 +468,12 @@ import pytz
 from pandas._libs.tslibs import (
 
 ```
-### 23.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timestamp.py`
-**line number**: 13
-```python
-
-from dateutil.tz import (
-    tzlocal,
-    tzutc,
-)
-from hypothesis import (
-    given,
-
-```
-### 24.
-**path**: `.repositories/pandas/pandas/tests/resample/test_period_index.py`
-**line number**: 3
+### 12.
+**path**: `.repositories/pandas/pandas/tests/reshape/concat/test_datetimes.py`
+**line number**: 4
 ```python
 
 import dateutil
-import numpy as np
-import pytest
-import pytz
-
-from pandas._libs.tslibs.ccalendar import (
-
-```
-### 25.
-**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_formats.py`
-**line number**: 3
-```python
-
-import dateutil.tz
-import numpy as np
-import pytest
-import pytz
-
-import pandas as pd
-
-```
-### 26.
-**path**: `.repositories/pandas/pandas/tests/io/parser/test_converters.py`
-**line number**: 7
-```python
-
-from dateutil.parser import parse
 import numpy as np
 import pytest
 
@@ -662,7 +481,84 @@ import pandas as pd
 from pandas import (
 
 ```
-### 27.
+### 13.
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_unary_ops.py`
+**line number**: 3
+```python
+
+from dateutil.tz import gettz
+from hypothesis import (
+    given,
+    strategies as st,
+)
+import numpy as np
+
+```
+### 14.
+**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_to_period.py`
+**line number**: 1
+```python
+import dateutil.tz
+from dateutil.tz import tzlocal
+import pytest
+import pytz
+
+from pandas._libs.tslibs.ccalendar import MONTHS
+
+```
+### 15.
+**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_to_period.py`
+**line number**: 2
+```python
+import dateutil.tz
+from dateutil.tz import tzlocal
+import pytest
+import pytz
+
+from pandas._libs.tslibs.ccalendar import MONTHS
+from pandas._libs.tslibs.offsets import MonthEnd
+
+```
+### 16.
+**path**: `.repositories/pandas/pandas/tests/tslibs/test_timezones.py`
+**line number**: 7
+```python
+
+import dateutil.tz
+import pytest
+import pytz
+
+from pandas._libs.tslibs import (
+    conversion,
+
+```
+### 17.
+**path**: `.repositories/pandas/pandas/tests/tools/test_to_datetime.py`
+**line number**: 14
+```python
+
+from dateutil.parser import parse
+from dateutil.tz.tz import tzoffset
+import numpy as np
+import pytest
+import pytz
+
+
+```
+### 18.
+**path**: `.repositories/pandas/pandas/tests/tools/test_to_datetime.py`
+**line number**: 15
+```python
+from dateutil.parser import parse
+from dateutil.tz.tz import tzoffset
+import numpy as np
+import pytest
+import pytz
+
+from pandas._libs import tslib
+
+```
+### 19.
 **path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_ops.py`
 **line number**: 3
 ```python
@@ -675,98 +571,20 @@ from pandas.compat import IS64
 from pandas import (
 
 ```
-### 28.
-**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_astype.py`
-**line number**: 3
+### 20.
+**path**: `.repositories/pandas/pandas/tests/reshape/concat/test_append.py`
+**line number**: 4
 ```python
 
 import dateutil
 import numpy as np
 import pytest
-import pytz
 
 import pandas as pd
+from pandas import (
 
 ```
-### 29.
-**path**: `.repositories/pandas/pandas/tests/series/indexing/test_datetime.py`
-**line number**: 10
-```python
-
-from dateutil.tz import (
-    gettz,
-    tzutc,
-)
-import numpy as np
-import pytest
-
-```
-### 30.
-**path**: `.repositories/pandas/pandas/conftest.py`
-**line number**: 39
-```python
-
-from dateutil.tz import (
-    tzlocal,
-    tzutc,
-)
-import hypothesis
-from hypothesis import strategies as st
-
-```
-### 31.
-**path**: `.repositories/pandas/pandas/tests/tslibs/test_array_to_datetime.py`
-**line number**: 8
-```python
-
-from dateutil.tz.tz import tzoffset
-import numpy as np
-import pytest
-
-from pandas._libs import (
-    iNaT,
-
-```
-### 32.
-**path**: `.repositories/pandas/pandas/tests/io/parser/test_parse_dates.py`
-**line number**: 14
-```python
-
-from dateutil.parser import parse as du_parse
-from hypothesis import given
-import numpy as np
-import pytest
-import pytz
-
-
-```
-### 33.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_constructors.py`
-**line number**: 10
-```python
-
-import dateutil.tz
-from dateutil.tz import tzutc
-import numpy as np
-import pytest
-import pytz
-
-
-```
-### 34.
-**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_constructors.py`
-**line number**: 11
-```python
-import dateutil.tz
-from dateutil.tz import tzutc
-import numpy as np
-import pytest
-import pytz
-
-from pandas._libs.tslibs.dtypes import NpyDatetimeUnit
-
-```
-### 35.
+### 21.
 **path**: `.repositories/pandas/pandas/tseries/holiday.py`
 **line number**: 9
 ```python
@@ -779,7 +597,137 @@ from dateutil.relativedelta import (
     TH,
 
 ```
-### 36.
+### 22.
+**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_datetime.py`
+**line number**: 3
+```python
+
+import dateutil
+import numpy as np
+import pytest
+
+import pandas as pd
+from pandas import (
+
+```
+### 23.
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timezones.py`
+**line number**: 12
+```python
+
+import dateutil
+from dateutil.tz import (
+    gettz,
+    tzoffset,
+)
+import pytest
+
+```
+### 24.
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_timezones.py`
+**line number**: 13
+```python
+import dateutil
+from dateutil.tz import (
+    gettz,
+    tzoffset,
+)
+import pytest
+import pytz
+
+```
+### 25.
+**path**: `.repositories/pandas/pandas/core/indexes/datetimes.py`
+**line number**: 746
+```python
+        if isinstance(time, str):
+            from dateutil.parser import parse
+
+            time = parse(time).time()
+
+        if time.tzinfo:
+            if self.tz is None:
+
+```
+### 26.
+**path**: `.repositories/pandas/pandas/tests/frame/test_reductions.py`
+**line number**: 5
+```python
+
+from dateutil.tz import tzlocal
+import numpy as np
+import pytest
+
+from pandas.compat import (
+    IS64,
+
+```
+### 27.
+**path**: `.repositories/pandas/pandas/tests/series/indexing/test_datetime.py`
+**line number**: 10
+```python
+
+from dateutil.tz import (
+    gettz,
+    tzutc,
+)
+import numpy as np
+import pytest
+
+```
+### 28.
+**path**: `.repositories/pandas/pandas/tests/tseries/offsets/test_fiscal.py`
+**line number**: 6
+```python
+
+from dateutil.relativedelta import relativedelta
+import pytest
+
+from pandas import Timestamp
+from pandas.tests.tseries.offsets.common import (
+    WeekDay,
+
+```
+### 29.
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_constructors.py`
+**line number**: 10
+```python
+
+import dateutil.tz
+from dateutil.tz import tzutc
+import numpy as np
+import pytest
+import pytz
+
+
+```
+### 30.
+**path**: `.repositories/pandas/pandas/tests/scalar/timestamp/test_constructors.py`
+**line number**: 11
+```python
+import dateutil.tz
+from dateutil.tz import tzutc
+import numpy as np
+import pytest
+import pytz
+
+from pandas._libs.tslibs.dtypes import NpyDatetimeUnit
+
+```
+### 31.
+**path**: `.repositories/pandas/pandas/tests/resample/test_period_index.py`
+**line number**: 3
+```python
+
+import dateutil
+import numpy as np
+import pytest
+import pytz
+
+from pandas._libs.tslibs.ccalendar import (
+
+```
+### 32.
 **path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_timezones.py`
 **line number**: 13
 ```python
@@ -792,7 +740,7 @@ from dateutil.tz import (
 import numpy as np
 
 ```
-### 37.
+### 33.
 **path**: `.repositories/pandas/pandas/tests/indexes/datetimes/test_timezones.py`
 **line number**: 14
 ```python
@@ -805,30 +753,82 @@ import numpy as np
 import pytest
 
 ```
-### 38.
-**path**: `.repositories/pandas/pandas/tests/tools/test_to_datetime.py`
-**line number**: 14
+### 34.
+**path**: `.repositories/pandas/pandas/tests/indexing/test_loc.py`
+**line number**: 11
+```python
+
+from dateutil.tz import gettz
+import numpy as np
+import pytest
+
+from pandas.errors import IndexingError
+import pandas.util._test_decorators as td
+
+```
+### 35.
+**path**: `.repositories/pandas/pandas/tests/io/parser/test_converters.py`
+**line number**: 7
 ```python
 
 from dateutil.parser import parse
-from dateutil.tz.tz import tzoffset
+import numpy as np
+import pytest
+
+import pandas as pd
+from pandas import (
+
+```
+### 36.
+**path**: `.repositories/pandas/pandas/tests/io/parser/test_parse_dates.py`
+**line number**: 14
+```python
+
+from dateutil.parser import parse as du_parse
+from hypothesis import given
 import numpy as np
 import pytest
 import pytz
 
 
 ```
-### 39.
-**path**: `.repositories/pandas/pandas/tests/tools/test_to_datetime.py`
-**line number**: 15
+### 37.
+**path**: `.repositories/pandas/pandas/tests/tslibs/test_array_to_datetime.py`
+**line number**: 8
 ```python
-from dateutil.parser import parse
+
 from dateutil.tz.tz import tzoffset
+import numpy as np
+import pytest
+
+from pandas._libs import (
+    iNaT,
+
+```
+### 38.
+**path**: `.repositories/pandas/pandas/tests/indexes/datetimes/methods/test_astype.py`
+**line number**: 3
+```python
+
+import dateutil
 import numpy as np
 import pytest
 import pytz
 
-from pandas._libs import tslib
+import pandas as pd
+
+```
+### 39.
+**path**: `.repositories/pandas/pandas/tests/tseries/offsets/test_common.py`
+**line number**: 3
+```python
+
+from dateutil.tz.tz import tzlocal
+import pytest
+
+from pandas._libs.tslibs import (
+    OutOfBoundsDatetime,
+    Timestamp,
 
 ```
 ## google
@@ -914,175 +914,6 @@ CSSList = list[CSSPair]
 
 ```
 ### 3.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 25
-```python
-if TYPE_CHECKING:
-    from odf.opendocument import OpenDocument
-
-    from pandas._libs.tslibs.nattype import NaTType
-
-
-@doc(storage_options=_shared_docs["storage_options"])
-
-```
-### 4.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 58
-```python
-    def _workbook_class(self) -> type[OpenDocument]:
-        from odf.opendocument import OpenDocument
-
-        return OpenDocument
-
-    def load_workbook(
-        self, filepath_or_buffer: FilePath | ReadBuffer[bytes], engine_kwargs
-
-```
-### 5.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 65
-```python
-    ) -> OpenDocument:
-        from odf.opendocument import load
-
-        return load(filepath_or_buffer, **engine_kwargs)
-
-    @property
-    def empty_value(self) -> str:
-
-```
-### 6.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 77
-```python
-        """Return a list of sheet names present in the document"""
-        from odf.table import Table
-
-        tables = self.book.getElementsByType(Table)
-        return [t.getAttribute("name") for t in tables]
-
-    def get_sheet_by_index(self, index: int):
-
-```
-### 7.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 83
-```python
-    def get_sheet_by_index(self, index: int):
-        from odf.table import Table
-
-        self.raise_if_bad_sheet_by_index(index)
-        tables = self.book.getElementsByType(Table)
-        return tables[index]
-
-
-```
-### 8.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 90
-```python
-    def get_sheet_by_name(self, name: str):
-        from odf.table import Table
-
-        self.raise_if_bad_sheet_by_name(name)
-        tables = self.book.getElementsByType(Table)
-
-        for table in tables:
-
-```
-### 9.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 108
-```python
-        """
-        from odf.table import (
-            CoveredTableCell,
-            TableCell,
-            TableRow,
-        )
-
-
-```
-### 10.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 176
-```python
-        """
-        from odf.namespaces import TABLENS
-
-        return int(row.attributes.get((TABLENS, "number-rows-repeated"), 1))
-
-    def _get_column_repeat(self, cell) -> int:
-        from odf.namespaces import TABLENS
-
-```
-### 11.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 181
-```python
-    def _get_column_repeat(self, cell) -> int:
-        from odf.namespaces import TABLENS
-
-        return int(cell.attributes.get((TABLENS, "number-columns-repeated"), 1))
-
-    def _is_empty_row(self, row) -> bool:
-        """
-
-```
-### 12.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 196
-```python
-    def _get_cell_value(self, cell) -> Scalar | NaTType:
-        from odf.namespaces import OFFICENS
-
-        if str(cell) == "#N/A":
-            return np.nan
-
-        cell_type = cell.attributes.get((OFFICENS, "value-type"))
-
-```
-### 13.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 239
-```python
-        """
-        from odf.element import Element
-        from odf.namespaces import TEXTNS
-        from odf.text import S
-
-        text_s = S().qname
-
-
-```
-### 14.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 240
-```python
-        from odf.element import Element
-        from odf.namespaces import TEXTNS
-        from odf.text import S
-
-        text_s = S().qname
-
-        value = []
-
-```
-### 15.
-**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
-**line number**: 241
-```python
-        from odf.namespaces import TEXTNS
-        from odf.text import S
-
-        text_s = S().qname
-
-        value = []
-
-
-```
-### 16.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 47
 ```python
@@ -1095,7 +926,7 @@ if TYPE_CHECKING:
         engine_kwargs = combine_kwargs(engine_kwargs, kwargs)
 
 ```
-### 17.
+### 4.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 77
 ```python
@@ -1108,7 +939,7 @@ if TYPE_CHECKING:
         }
 
 ```
-### 18.
+### 5.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 104
 ```python
@@ -1121,7 +952,7 @@ if TYPE_CHECKING:
         from odf.text import P
 
 ```
-### 19.
+### 6.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 109
 ```python
@@ -1134,7 +965,7 @@ if TYPE_CHECKING:
         if sheet_name in self.sheets:
 
 ```
-### 20.
+### 7.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 187
 ```python
@@ -1147,7 +978,7 @@ if TYPE_CHECKING:
         if isinstance(val, bool):
 
 ```
-### 21.
+### 8.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 261
 ```python
@@ -1160,7 +991,7 @@ if TYPE_CHECKING:
         )
 
 ```
-### 22.
+### 9.
 **path**: `.repositories/pandas/pandas/io/excel/_odswriter.py`
 **line number**: 313
 ```python
@@ -1171,6 +1002,175 @@ if TYPE_CHECKING:
             ConfigItemMapIndexed,
             ConfigItemMapNamed,
             ConfigItemSet,
+
+```
+### 10.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 25
+```python
+if TYPE_CHECKING:
+    from odf.opendocument import OpenDocument
+
+    from pandas._libs.tslibs.nattype import NaTType
+
+
+@doc(storage_options=_shared_docs["storage_options"])
+
+```
+### 11.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 58
+```python
+    def _workbook_class(self) -> type[OpenDocument]:
+        from odf.opendocument import OpenDocument
+
+        return OpenDocument
+
+    def load_workbook(
+        self, filepath_or_buffer: FilePath | ReadBuffer[bytes], engine_kwargs
+
+```
+### 12.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 65
+```python
+    ) -> OpenDocument:
+        from odf.opendocument import load
+
+        return load(filepath_or_buffer, **engine_kwargs)
+
+    @property
+    def empty_value(self) -> str:
+
+```
+### 13.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 77
+```python
+        """Return a list of sheet names present in the document"""
+        from odf.table import Table
+
+        tables = self.book.getElementsByType(Table)
+        return [t.getAttribute("name") for t in tables]
+
+    def get_sheet_by_index(self, index: int):
+
+```
+### 14.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 83
+```python
+    def get_sheet_by_index(self, index: int):
+        from odf.table import Table
+
+        self.raise_if_bad_sheet_by_index(index)
+        tables = self.book.getElementsByType(Table)
+        return tables[index]
+
+
+```
+### 15.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 90
+```python
+    def get_sheet_by_name(self, name: str):
+        from odf.table import Table
+
+        self.raise_if_bad_sheet_by_name(name)
+        tables = self.book.getElementsByType(Table)
+
+        for table in tables:
+
+```
+### 16.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 108
+```python
+        """
+        from odf.table import (
+            CoveredTableCell,
+            TableCell,
+            TableRow,
+        )
+
+
+```
+### 17.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 176
+```python
+        """
+        from odf.namespaces import TABLENS
+
+        return int(row.attributes.get((TABLENS, "number-rows-repeated"), 1))
+
+    def _get_column_repeat(self, cell) -> int:
+        from odf.namespaces import TABLENS
+
+```
+### 18.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 181
+```python
+    def _get_column_repeat(self, cell) -> int:
+        from odf.namespaces import TABLENS
+
+        return int(cell.attributes.get((TABLENS, "number-columns-repeated"), 1))
+
+    def _is_empty_row(self, row) -> bool:
+        """
+
+```
+### 19.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 196
+```python
+    def _get_cell_value(self, cell) -> Scalar | NaTType:
+        from odf.namespaces import OFFICENS
+
+        if str(cell) == "#N/A":
+            return np.nan
+
+        cell_type = cell.attributes.get((OFFICENS, "value-type"))
+
+```
+### 20.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 239
+```python
+        """
+        from odf.element import Element
+        from odf.namespaces import TEXTNS
+        from odf.text import S
+
+        text_s = S().qname
+
+
+```
+### 21.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 240
+```python
+        from odf.element import Element
+        from odf.namespaces import TEXTNS
+        from odf.text import S
+
+        text_s = S().qname
+
+        value = []
+
+```
+### 22.
+**path**: `.repositories/pandas/pandas/io/excel/_odfreader.py`
+**line number**: 241
+```python
+        from odf.namespaces import TEXTNS
+        from odf.text import S
+
+        text_s = S().qname
+
+        value = []
+
 
 ```
 ## py
@@ -1201,19 +1201,6 @@ if TYPE_CHECKING:
 
 ```
 ### 3.
-**path**: `.repositories/pandas/pandas/tests/io/pytables/test_read.py`
-**line number**: 337
-```python
-    # GH11773
-    from py.path import local as LocalPath
-
-    expected = DataFrame(
-        np.random.default_rng(2).random((4, 5)),
-        index=list("abcd"),
-        columns=list("ABCDE"),
-
-```
-### 4.
 **path**: `.repositories/pandas/pandas/tests/io/test_common.py`
 **line number**: 43
 ```python
@@ -1224,6 +1211,19 @@ try:
 except ImportError:
     pass
 
+
+```
+### 4.
+**path**: `.repositories/pandas/pandas/tests/io/pytables/test_read.py`
+**line number**: 337
+```python
+    # GH11773
+    from py.path import local as LocalPath
+
+    expected = DataFrame(
+        np.random.default_rng(2).random((4, 5)),
+        index=list("abcd"),
+        columns=list("ABCDE"),
 
 ```
 ## pylab
@@ -1335,19 +1335,6 @@ if TYPE_CHECKING:
 ```
 ## traitlets
 ### 1.
-**path**: `.repositories/pandas/pandas/io/formats/printing.py`
-**line number**: 260
-```python
-            from IPython.core.formatters import BaseFormatter
-            from traitlets import ObjectName
-
-            class TableSchemaFormatter(BaseFormatter):
-                print_method = ObjectName("_repr_data_resource_")
-                _return_type = (dict,)
-
-
-```
-### 2.
 **path**: `.repositories/pandas/pandas/conftest.py`
 **line number**: 1851
 ```python
@@ -1358,6 +1345,19 @@ if TYPE_CHECKING:
     c.HistoryManager.hist_file = ":memory:"
 
     return InteractiveShell(config=c)
+
+```
+### 2.
+**path**: `.repositories/pandas/pandas/io/formats/printing.py`
+**line number**: 260
+```python
+            from IPython.core.formatters import BaseFormatter
+            from traitlets import ObjectName
+
+            class TableSchemaFormatter(BaseFormatter):
+                print_method = ObjectName("_repr_data_resource_")
+                _return_type = (dict,)
+
 
 ```
 ## typing_extensions

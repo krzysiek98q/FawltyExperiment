@@ -8,7 +8,7 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "sphinx", "cycler", "ipywidgets", "scipy", "fastcluster", "typing_extensions", "statsmodels", "com", "numpy", "win32com", "win32api", "PIL", "matplotlib", "pandas",]
+imports = [ "sphinx", "cycler", "ipywidgets", "scipy", "fastcluster", "typing_extensions", "statsmodels", "com", "numpy", "win32com", "PIL", "win32api", "matplotlib", "pandas",]
 declared_deps = [ "numpy", "pandas", "matplotlib", "typing_extensions", "pytest", "pytest-cov", "pytest-xdist", "flake8", "mypy", "pandas-stubs", "pre-commit", "flit", "numpydoc", "nbconvert", "ipykernel", "sphinx-copybutton", "sphinx-issues", "sphinx-design", "pyyaml", "pydata_sphinx_theme", "scipy", "statsmodels",]
 undeclared_deps = [ "PIL", "com", "cycler", "fastcluster", "ipywidgets", "sphinx", "win32api", "win32com",]
 unused_deps = [ "flake8", "flit", "ipykernel", "mypy", "nbconvert", "numpydoc", "pandas-stubs", "pre-commit", "pydata_sphinx_theme", "pytest", "pytest-cov", "pytest-xdist", "pyyaml", "sphinx-copybutton", "sphinx-design", "sphinx-issues",]

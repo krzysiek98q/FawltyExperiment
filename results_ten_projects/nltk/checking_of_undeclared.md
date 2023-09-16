@@ -166,112 +166,6 @@ class CRFTagger(TaggerI):
 ```
 ## pytest
 ### 1.
-**path**: `.repositories/nltk/nltk/test/unit/test_seekable_unicode_stream_reader.py`
-**line number**: 4
-```python
-
-import pytest
-
-from nltk.corpus.reader import SeekableUnicodeStreamReader
-
-
-def check_reader(unicode_string, encoding):
-
-```
-### 2.
-**path**: `.repositories/nltk/nltk/test/conftest.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk.corpus.reader import CorpusReader
-
-
-@pytest.fixture(autouse=True)
-
-```
-### 3.
-**path**: `.repositories/nltk/nltk/test/unit/test_rte_classify.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk import config_megam
-from nltk.classify.rte_classify import RTEFeatureExtractor, rte_classifier, rte_features
-from nltk.corpus import rte as rte_corpus
-
-
-```
-### 4.
-**path**: `.repositories/nltk/nltk/test/unit/lm/test_counter.py`
-**line number**: 10
-```python
-
-import pytest
-
-from nltk import FreqDist
-from nltk.lm import NgramCounter
-from nltk.util import everygrams
-
-
-```
-### 5.
-**path**: `.repositories/nltk/nltk/test/unit/test_tag.py`
-**line number**: 21
-```python
-def setup_module(module):
-    import pytest
-
-    pytest.importorskip("numpy")
-
-```
-### 6.
-**path**: `.repositories/nltk/nltk/test/unit/test_corpora.py`
-**line number**: 3
-```python
-
-import pytest
-
-from nltk.corpus import (  # mwa_ppdb
-    cess_cat,
-    cess_esp,
-    conll2007,
-
-```
-### 7.
-**path**: `.repositories/nltk/nltk/test/gensim_fixt.py`
-**line number**: 2
-```python
-def setup_module():
-    import pytest
-
-    pytest.importorskip("gensim")
-
-```
-### 8.
-**path**: `.repositories/nltk/nltk/test/gluesemantics_malt_fixt.py`
-**line number**: 2
-```python
-def setup_module():
-    import pytest
-
-    from nltk.parse.malt import MaltParser
-
-    try:
-        depparser = MaltParser()
-
-```
-### 9.
-**path**: `.repositories/nltk/nltk/test/classify_fixt.py`
-**line number**: 3
-```python
-def setup_module():
-    import pytest
-
-    pytest.importorskip("numpy")
-
-```
-### 10.
 **path**: `.repositories/nltk/nltk/test/childes_fixt.py`
 **line number**: 2
 ```python
@@ -284,7 +178,7 @@ def setup_module():
         nltk.data.find("corpora/childes/data-xml/Eng-USA-MOR/")
 
 ```
-### 11.
+### 2.
 **path**: `.repositories/nltk/nltk/test/portuguese_en_fixt.py`
 **line number**: 2
 ```python
@@ -294,108 +188,20 @@ def setup_module():
     pytest.skip("portuguese_en.doctest imports nltk.examples.pt which doesn't exist!")
 
 ```
-### 12.
-**path**: `.repositories/nltk/nltk/test/unit/test_data.py`
-**line number**: 1
-```python
-import pytest
-
-import nltk.data
-
-
-def test_find_raises_exception():
-
-```
-### 13.
-**path**: `.repositories/nltk/nltk/test/unit/test_json2csv_corpus.py`
-**line number**: 14
-```python
-
-import pytest
-
-from nltk.corpus import twitter_samples
-from nltk.twitter.common import json2csv, json2csv_entities
-
-
-
-```
-### 14.
-**path**: `.repositories/nltk/nltk/test/unit/test_distance.py`
+### 3.
+**path**: `.repositories/nltk/nltk/test/unit/test_cfd_mutation.py`
 **line number**: 3
 ```python
 
 import pytest
 
-from nltk.metrics.distance import edit_distance
+from nltk import ConditionalFreqDist, tokenize
 
 
-class TestEditDistance:
-
-```
-### 15.
-**path**: `.repositories/nltk/nltk/test/setup_fixt.py`
-**line number**: 7
-```python
-    Keyword arguments are passed to `nltk.internals.find_binary`."""
-    import pytest
-
-    try:
-        find_binary(binary, **args)
-    except LookupError:
-        pytest.skip(f"Skipping test because the {binary} binary was not found.")
+class TestEmptyCondFreq(unittest.TestCase):
 
 ```
-### 16.
-**path**: `.repositories/nltk/nltk/test/setup_fixt.py`
-**line number**: 22
-```python
-    """
-    import pytest
-
-    pytest.skip(
-        "Skipping test because the doctests requiring jars are inconsistent on the CI."
-    )
-
-```
-### 17.
-**path**: `.repositories/nltk/nltk/test/unit/test_twitter_auth.py`
-**line number**: 7
-```python
-
-import pytest
-
-pytest.importorskip("twython")
-
-from nltk.twitter import Authenticate
-
-
-```
-### 18.
-**path**: `.repositories/nltk/nltk/test/unit/lm/test_models.py`
-**line number**: 10
-```python
-
-import pytest
-
-from nltk.lm import (
-    MLE,
-    AbsoluteDiscountingInterpolated,
-    KneserNeyInterpolated,
-
-```
-### 19.
-**path**: `.repositories/nltk/nltk/test/unit/test_util.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk.util import everygrams
-
-
-@pytest.fixture
-
-```
-### 20.
+### 4.
 **path**: `.repositories/nltk/nltk/test/unit/test_classify.py`
 **line number**: 4
 ```python
@@ -408,20 +214,56 @@ TRAIN = [
     (dict(a=1, b=1, c=1), "y"),
 
 ```
-### 21.
-**path**: `.repositories/nltk/nltk/test/unit/test_tokenize.py`
-**line number**: 7
+### 5.
+**path**: `.repositories/nltk/nltk/test/unit/test_data.py`
+**line number**: 1
+```python
+import pytest
+
+import nltk.data
+
+
+def test_find_raises_exception():
+
+```
+### 6.
+**path**: `.repositories/nltk/nltk/test/unit/test_rte_classify.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk import config_megam
+from nltk.classify.rte_classify import RTEFeatureExtractor, rte_classifier, rte_features
+from nltk.corpus import rte as rte_corpus
+
+
+```
+### 7.
+**path**: `.repositories/nltk/nltk/test/conftest.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk.corpus.reader import CorpusReader
+
+
+@pytest.fixture(autouse=True)
+
+```
+### 8.
+**path**: `.repositories/nltk/nltk/test/unit/lm/test_counter.py`
+**line number**: 10
 ```python
 
 import pytest
 
-from nltk.tokenize import (
-    LegalitySyllableTokenizer,
-    StanfordSegmenter,
-    SyllableTokenizer,
+from nltk import FreqDist
+from nltk.lm import NgramCounter
+from nltk.util import everygrams
+
 
 ```
-### 22.
+### 9.
 **path**: `.repositories/nltk/nltk/test/probability_fixt.py`
 **line number**: 6
 ```python
@@ -431,7 +273,32 @@ def setup_module():
     pytest.importorskip("numpy")
 
 ```
-### 23.
+### 10.
+**path**: `.repositories/nltk/nltk/test/unit/test_util.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk.util import everygrams
+
+
+@pytest.fixture
+
+```
+### 11.
+**path**: `.repositories/nltk/nltk/test/unit/test_corpora.py`
+**line number**: 3
+```python
+
+import pytest
+
+from nltk.corpus import (  # mwa_ppdb
+    cess_cat,
+    cess_esp,
+    conll2007,
+
+```
+### 12.
 **path**: `.repositories/nltk/nltk/test/unit/test_corenlp.py`
 **line number**: 8
 ```python
@@ -444,7 +311,66 @@ from nltk.tree import Tree
 
 
 ```
-### 24.
+### 13.
+**path**: `.repositories/nltk/nltk/test/gensim_fixt.py`
+**line number**: 2
+```python
+def setup_module():
+    import pytest
+
+    pytest.importorskip("gensim")
+
+```
+### 14.
+**path**: `.repositories/nltk/nltk/test/unit/test_tag.py`
+**line number**: 21
+```python
+def setup_module(module):
+    import pytest
+
+    pytest.importorskip("numpy")
+
+```
+### 15.
+**path**: `.repositories/nltk/nltk/test/unit/test_seekable_unicode_stream_reader.py`
+**line number**: 4
+```python
+
+import pytest
+
+from nltk.corpus.reader import SeekableUnicodeStreamReader
+
+
+def check_reader(unicode_string, encoding):
+
+```
+### 16.
+**path**: `.repositories/nltk/nltk/test/unit/test_distance.py`
+**line number**: 3
+```python
+
+import pytest
+
+from nltk.metrics.distance import edit_distance
+
+
+class TestEditDistance:
+
+```
+### 17.
+**path**: `.repositories/nltk/nltk/test/unit/test_json2csv_corpus.py`
+**line number**: 14
+```python
+
+import pytest
+
+from nltk.corpus import twitter_samples
+from nltk.twitter.common import json2csv, json2csv_entities
+
+
+
+```
+### 18.
 **path**: `.repositories/nltk/nltk/test/unit/test_hmm.py`
 **line number**: 1
 ```python
@@ -456,7 +382,94 @@ from nltk.tag import hmm
 def _wikipedia_example_hmm():
 
 ```
+### 19.
+**path**: `.repositories/nltk/nltk/test/unit/lm/test_models.py`
+**line number**: 10
+```python
+
+import pytest
+
+from nltk.lm import (
+    MLE,
+    AbsoluteDiscountingInterpolated,
+    KneserNeyInterpolated,
+
+```
+### 20.
+**path**: `.repositories/nltk/nltk/test/classify_fixt.py`
+**line number**: 3
+```python
+def setup_module():
+    import pytest
+
+    pytest.importorskip("numpy")
+
+```
+### 21.
+**path**: `.repositories/nltk/nltk/test/unit/test_twitter_auth.py`
+**line number**: 7
+```python
+
+import pytest
+
+pytest.importorskip("twython")
+
+from nltk.twitter import Authenticate
+
+
+```
+### 22.
+**path**: `.repositories/nltk/nltk/test/gluesemantics_malt_fixt.py`
+**line number**: 2
+```python
+def setup_module():
+    import pytest
+
+    from nltk.parse.malt import MaltParser
+
+    try:
+        depparser = MaltParser()
+
+```
+### 23.
+**path**: `.repositories/nltk/nltk/test/unit/test_tokenize.py`
+**line number**: 7
+```python
+
+import pytest
+
+from nltk.tokenize import (
+    LegalitySyllableTokenizer,
+    StanfordSegmenter,
+    SyllableTokenizer,
+
+```
+### 24.
+**path**: `.repositories/nltk/nltk/test/setup_fixt.py`
+**line number**: 7
+```python
+    Keyword arguments are passed to `nltk.internals.find_binary`."""
+    import pytest
+
+    try:
+        find_binary(binary, **args)
+    except LookupError:
+        pytest.skip(f"Skipping test because the {binary} binary was not found.")
+
+```
 ### 25.
+**path**: `.repositories/nltk/nltk/test/setup_fixt.py`
+**line number**: 22
+```python
+    """
+    import pytest
+
+    pytest.skip(
+        "Skipping test because the doctests requiring jars are inconsistent on the CI."
+    )
+
+```
+### 26.
 **path**: `.repositories/nltk/nltk/test/unit/test_bllip.py`
 **line number**: 1
 ```python
@@ -466,19 +479,6 @@ from nltk.data import find
 from nltk.parse.bllip import BllipParser
 from nltk.tree import Tree
 
-
-```
-### 26.
-**path**: `.repositories/nltk/nltk/test/unit/test_cfd_mutation.py`
-**line number**: 3
-```python
-
-import pytest
-
-from nltk import ConditionalFreqDist, tokenize
-
-
-class TestEmptyCondFreq(unittest.TestCase):
 
 ```
 ## sklearn
@@ -589,19 +589,6 @@ if __name__ == "__main__":
 ```
 ## yaml
 ### 1.
-**path**: `.repositories/nltk/nltk/data.py`
-**line number**: 768
-```python
-    elif format == "yaml":
-        import yaml
-
-        resource_val = yaml.safe_load(opened_resource)
-    else:
-        # The resource is a text format.
-        binary_data = opened_resource.read()
-
-```
-### 2.
 **path**: `.repositories/nltk/nltk/corpus/reader/markdown.py`
 **line number**: 207
 ```python
@@ -612,5 +599,18 @@ if __name__ == "__main__":
             safe_load(t.content)
             for t in self.parser.parse(stream.read())
             if t.type == "front_matter"
+
+```
+### 2.
+**path**: `.repositories/nltk/nltk/data.py`
+**line number**: 768
+```python
+    elif format == "yaml":
+        import yaml
+
+        resource_val = yaml.safe_load(opened_resource)
+    else:
+        # The resource is a text format.
+        binary_data = opened_resource.read()
 
 ```

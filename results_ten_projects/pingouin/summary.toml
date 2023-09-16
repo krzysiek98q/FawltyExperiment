@@ -8,7 +8,7 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "sklearn", "seaborn", "pandas_flavor", "scipy", "mpmath", "statsmodels", "tabulate", "pytest", "numpy", "outdated", "datamatrix", "matplotlib", "pandas",]
+imports = [ "sklearn", "seaborn", "pandas_flavor", "scipy", "mpmath", "tabulate", "statsmodels", "pytest", "numpy", "outdated", "datamatrix", "matplotlib", "pandas",]
 declared_deps = []
 undeclared_deps = [ "datamatrix", "matplotlib", "mpmath", "numpy", "outdated", "pandas", "pandas_flavor", "pytest", "scipy", "seaborn", "sklearn", "statsmodels", "tabulate",]
 unused_deps = []

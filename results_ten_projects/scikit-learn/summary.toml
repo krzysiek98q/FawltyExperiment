@@ -8,7 +8,7 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "joblib", "setuptools", "scipy", "typing_extensions", "_pytest", "pooch", "Cython", "pyamg", "pytest", "numpy", "array_api_compat", "PIL", "threadpoolctl", "matplotlib", "numpydoc", "cupy", "pandas",]
+imports = [ "joblib", "setuptools", "scipy", "_pytest", "typing_extensions", "pooch", "Cython", "pyamg", "pytest", "numpy", "array_api_compat", "threadpoolctl", "PIL", "matplotlib", "numpydoc", "cupy", "pandas",]
 declared_deps = [ "numpy", "scipy", "joblib", "threadpoolctl", "matplotlib", "pandas", "memory-profiler", "matplotlib", "scikit-image", "pandas", "seaborn", "memory-profiler", "sphinx", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "Pillow", "pooch", "sphinx-prompt", "sphinxext-opengraph", "plotly", "matplotlib", "scikit-image", "pandas", "seaborn", "pooch", "plotly", "matplotlib", "scikit-image", "pandas", "pytest", "pytest-cov", "ruff", "black", "mypy", "pyamg", "numpydoc", "pooch",]
 undeclared_deps = [ "Cython", "PIL", "_pytest", "array_api_compat", "cupy", "setuptools", "typing_extensions",]
 unused_deps = [ "Pillow", "black", "memory-profiler", "mypy", "plotly", "pytest-cov", "ruff", "scikit-image", "seaborn", "sphinx", "sphinx-copybutton", "sphinx-gallery", "sphinx-prompt", "sphinxext-opengraph",]
