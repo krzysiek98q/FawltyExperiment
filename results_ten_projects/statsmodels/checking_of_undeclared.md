@@ -1,31 +1,4 @@
 # undeclared dependenciec
-## Cython
-### 1.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 45
-```python
-    try:
-        import Cython
-        print("cython: %s" % safe_version(Cython))
-    except ImportError:
-        print("cython: Not installed")
-
-    try:
-
-```
-### 2.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 179
-```python
-    try:
-        import Cython
-        print("cython: %s (%s)" % (safe_version(Cython),
-                                   dirname(Cython.__file__)))
-    except ImportError:
-        print("cython: Not installed")
-
-
-```
 ## IPython
 ### 1.
 **path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
@@ -53,20 +26,6 @@
     try:
 
 ```
-## _pytest
-### 1.
-**path**: `.repositories/statsmodels/statsmodels/compat/pytest.py`
-**line number**: 6
-```python
-
-from _pytest.recwarn import WarningsChecker
-from pytest import warns
-
-__all__ = ["pytest_warns"]
-
-
-
-```
 ## black
 ### 1.
 **path**: `.repositories/statsmodels/statsmodels/tsa/ardl/_pss_critical_values/pss-process.py`
@@ -83,6 +42,45 @@ if __name__ == "__main__":
 ```
 ## cvxopt
 ### 1.
+**path**: `.repositories/statsmodels/statsmodels/discrete/tests/test_discrete.py`
+**line number**: 54
+```python
+try:
+    import cvxopt  # noqa:F401
+    has_cvxopt = True
+except ImportError:
+    has_cvxopt = False
+
+
+
+```
+### 2.
+**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
+**line number**: 89
+```python
+    try:
+        from cvxopt import info
+        print("cvxopt: %s" % safe_version(info, 'version'))
+    except ImportError:
+        print("cvxopt: Not installed")
+
+    try:
+
+```
+### 3.
+**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
+**line number**: 232
+```python
+    try:
+        from cvxopt import info
+        print("cvxopt: %s (%s)" % (safe_version(info, 'version'),
+                                   dirname(info.__file__)))
+    except ImportError:
+        print("cvxopt: Not installed")
+
+
+```
+### 4.
 **path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
 **line number**: 56
 ```python
@@ -95,7 +93,7 @@ if __name__ == "__main__":
     # k_params is total number of covariates, possibly including a leading constant.
 
 ```
-### 2.
+### 5.
 **path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
 **line number**: 147
 ```python
@@ -108,7 +106,7 @@ if __name__ == "__main__":
     # Call the numpy version
 
 ```
-### 3.
+### 6.
 **path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
 **line number**: 162
 ```python
@@ -121,7 +119,7 @@ if __name__ == "__main__":
     # The derivative just appends a vector of constants
 
 ```
-### 4.
+### 7.
 **path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
 **line number**: 177
 ```python
@@ -134,7 +132,7 @@ if __name__ == "__main__":
     C = np.concatenate((A, B), axis=0)
 
 ```
-### 5.
+### 8.
 **path**: `.repositories/statsmodels/statsmodels/base/l1_cvxopt.py`
 **line number**: 194
 ```python
@@ -145,45 +143,6 @@ if __name__ == "__main__":
     params = x_arr[:k_params].ravel()
     zh_x = np.asarray(z[0]) * hess(params)
     zero_mat = np.zeros(zh_x.shape)
-
-```
-### 6.
-**path**: `.repositories/statsmodels/statsmodels/stats/tests/test_knockoff.py`
-**line number**: 11
-```python
-try:
-    import cvxopt  # noqa:F401
-    has_cvxopt = True
-except ImportError:
-    has_cvxopt = False
-
-
-
-```
-### 7.
-**path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
-**line number**: 1166
-```python
-
-        from cvxopt import solvers
-        solvers.options["show_progress"] = False
-
-        rslt = solvers.socp(c, Gl=G0, hl=h0, Gq=[G1], hq=[h1])
-        x = np.asarray(rslt['x']).flat
-        bp = x[1:p+1]
-
-```
-### 8.
-**path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
-**line number**: 1143
-```python
-        try:
-            import cvxopt
-        except ImportError:
-            msg = 'sqrt_lasso fitting requires the cvxopt module'
-            raise ValueError(msg)
-
-        n = len(self.endog)
 
 ```
 ### 9.
@@ -200,6 +159,19 @@ except ImportError:
 
 ```
 ### 10.
+**path**: `.repositories/statsmodels/statsmodels/stats/tests/test_knockoff.py`
+**line number**: 11
+```python
+try:
+    import cvxopt  # noqa:F401
+    has_cvxopt = True
+except ImportError:
+    has_cvxopt = False
+
+
+
+```
+### 11.
 **path**: `.repositories/statsmodels/statsmodels/discrete/discrete_model.py`
 **line number**: 51
 ```python
@@ -212,7 +184,7 @@ except ImportError:
 
 
 ```
-### 11.
+### 12.
 **path**: `.repositories/statsmodels/statsmodels/regression/tests/test_regression.py`
 **line number**: 40
 ```python
@@ -225,43 +197,30 @@ except ImportError:
 
 
 ```
-### 12.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 89
-```python
-    try:
-        from cvxopt import info
-        print("cvxopt: %s" % safe_version(info, 'version'))
-    except ImportError:
-        print("cvxopt: Not installed")
-
-    try:
-
-```
 ### 13.
-**path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
-**line number**: 232
+**path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
+**line number**: 1166
 ```python
-    try:
-        from cvxopt import info
-        print("cvxopt: %s (%s)" % (safe_version(info, 'version'),
-                                   dirname(info.__file__)))
-    except ImportError:
-        print("cvxopt: Not installed")
 
+        from cvxopt import solvers
+        solvers.options["show_progress"] = False
+
+        rslt = solvers.socp(c, Gl=G0, hl=h0, Gq=[G1], hq=[h1])
+        x = np.asarray(rslt['x']).flat
+        bp = x[1:p+1]
 
 ```
 ### 14.
-**path**: `.repositories/statsmodels/statsmodels/discrete/tests/test_discrete.py`
-**line number**: 54
+**path**: `.repositories/statsmodels/statsmodels/regression/linear_model.py`
+**line number**: 1143
 ```python
-try:
-    import cvxopt  # noqa:F401
-    has_cvxopt = True
-except ImportError:
-    has_cvxopt = False
+        try:
+            import cvxopt
+        except ImportError:
+            msg = 'sqrt_lasso fitting requires the cvxopt module'
+            raise ValueError(msg)
 
-
+        n = len(self.endog)
 
 ```
 ## dateutil
@@ -321,19 +280,6 @@ s = ts.time_series([1,2,3,4,5],
 ```
 ## jinja2
 ### 1.
-**path**: `.repositories/statsmodels/statsmodels/multivariate/tests/test_factor.py`
-**line number**: 221
-```python
-    try:
-        from jinja2 import Template  # noqa:F401
-    except ImportError:
-        return
-        # TODO: separate this and do pytest.skip?
-
-    # Old implementation that warns
-
-```
-### 2.
 **path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
 **line number**: 108
 ```python
@@ -346,7 +292,7 @@ s = ts.time_series([1,2,3,4,5],
     try:
 
 ```
-### 3.
+### 2.
 **path**: `.repositories/statsmodels/statsmodels/tools/print_version.py`
 **line number**: 254
 ```python
@@ -357,6 +303,19 @@ s = ts.time_series([1,2,3,4,5],
     except ImportError:
         print("    jinja2: Not installed")
 
+
+```
+### 3.
+**path**: `.repositories/statsmodels/statsmodels/multivariate/tests/test_factor.py`
+**line number**: 221
+```python
+    try:
+        from jinja2 import Template  # noqa:F401
+    except ImportError:
+        return
+        # TODO: separate this and do pytest.skip?
+
+    # Old implementation that warns
 
 ```
 ## la
@@ -456,19 +415,6 @@ order = 10
 ```
 ## numdifftools
 ### 1.
-**path**: `.repositories/statsmodels/statsmodels/tsa/mlemodel.py`
-**line number**: 16
-```python
-try:
-    import numdifftools as ndt
-except ImportError:
-    pass
-
-from statsmodels.base.model import LikelihoodModel
-
-
-```
-### 2.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/tsa/examples/ex_mle_arma.py`
 **line number**: 12
 ```python
@@ -478,6 +424,19 @@ import numdifftools as ndt
 from statsmodels.sandbox import tsa
 from statsmodels.tsa.arma_mle import Arma  # local import
 from statsmodels.tsa.arima_process import arma_generate_sample
+
+
+```
+### 2.
+**path**: `.repositories/statsmodels/statsmodels/tsa/mlemodel.py`
+**line number**: 16
+```python
+try:
+    import numdifftools as ndt
+except ImportError:
+    pass
+
+from statsmodels.base.model import LikelihoodModel
 
 
 ```
@@ -551,19 +510,6 @@ examples = [1, 2]
 ```
 ## rpy2
 ### 1.
-**path**: `.repositories/statsmodels/statsmodels/examples/tests/test_notebooks.py`
-**line number**: 31
-```python
-try:
-    import rpy2  # noqa: F401
-    HAS_RPY2 = True
-except ImportError:
-    HAS_RPY2 = False
-
-try:
-
-```
-### 2.
 **path**: `.repositories/statsmodels/statsmodels/tsa/vector_ar/tests/test_var.py`
 **line number**: 123
 ```python
@@ -574,6 +520,19 @@ try:
     return prp.convert_robj(r["result"], use_pandas=False)
 
 
+
+```
+### 2.
+**path**: `.repositories/statsmodels/statsmodels/examples/tests/test_notebooks.py`
+**line number**: 31
+```python
+try:
+    import rpy2  # noqa: F401
+    HAS_RPY2 = True
+except ImportError:
+    HAS_RPY2 = False
+
+try:
 
 ```
 ## savedrvs
@@ -592,6 +551,19 @@ try:
 ```
 ## scikits
 ### 1.
+**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/try_interchange.py`
+**line number**: 26
+```python
+import numpy as np
+import scikits.timeseries as ts
+import la
+import pandas
+import tabular as tb
+from finance import msft, ibm  # hack to make it run as standalone
+
+
+```
+### 2.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/tsa/examples/example_var.py`
 **line number**: 6
 ```python
@@ -604,7 +576,7 @@ import statsmodels.api as sm
 data = sm.datasets.macrodata.load()
 
 ```
-### 2.
+### 3.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/tsa/examples/example_var.py`
 **line number**: 7
 ```python
@@ -617,7 +589,7 @@ data = sm.datasets.macrodata.load()
 data = data.data
 
 ```
-### 3.
+### 4.
 **path**: `.repositories/statsmodels/statsmodels/sandbox/tsa/try_arma_more.py`
 **line number**: 23
 ```python
@@ -628,19 +600,6 @@ except ImportError:
 
 ar = [1., -0.7]#[1,0,0,0,0,0,0,-0.7]
 ma = [1., 0.3]
-
-```
-### 4.
-**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/try_interchange.py`
-**line number**: 26
-```python
-import numpy as np
-import scikits.timeseries as ts
-import la
-import pandas
-import tabular as tb
-from finance import msft, ibm  # hack to make it run as standalone
-
 
 ```
 ## sklearn
@@ -684,32 +643,19 @@ if __name__ == "__main__":
 
 ```
 ### 4.
-**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
-**line number**: 81
+**path**: `.repositories/statsmodels/statsmodels/tools/parallel.py`
+**line number**: 52
 ```python
-try:
-    import sklearn  # noqa:F401
-except ImportError:
-    has_sklearn = False
-    print('sklearn not available')
+        except ImportError:
+            from sklearn.externals.joblib import Parallel, delayed
 
+        parallel = Parallel(n_jobs, verbose=verbose)
+        my_func = delayed(func)
 
+        if n_jobs == -1:
 
 ```
 ### 5.
-**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
-**line number**: 93
-```python
-if has_sklearn:
-    from sklearn.covariance import LedoitWolf, OAS, MCD
-
-    lw = LedoitWolf(store_precision=False)
-    lw.fit(rr, assume_centered=False)
-    cov_lw = lw.covariance_
-    corr_lw = cov2corr(cov_lw)
-
-```
-### 6.
 **path**: `.repositories/statsmodels/statsmodels/examples/l1_demo/sklearn_compare.py`
 **line number**: 23
 ```python
@@ -722,17 +668,30 @@ import statsmodels.api as sm
 # Use either spector or anes96
 
 ```
-### 7.
-**path**: `.repositories/statsmodels/statsmodels/tools/parallel.py`
-**line number**: 52
+### 6.
+**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
+**line number**: 81
 ```python
-        except ImportError:
-            from sklearn.externals.joblib import Parallel, delayed
+try:
+    import sklearn  # noqa:F401
+except ImportError:
+    has_sklearn = False
+    print('sklearn not available')
 
-        parallel = Parallel(n_jobs, verbose=verbose)
-        my_func = delayed(func)
 
-        if n_jobs == -1:
+
+```
+### 7.
+**path**: `.repositories/statsmodels/statsmodels/sandbox/examples/thirdparty/ex_ratereturn.py`
+**line number**: 93
+```python
+if has_sklearn:
+    from sklearn.covariance import LedoitWolf, OAS, MCD
+
+    lw = LedoitWolf(store_precision=False)
+    lw.fit(rr, assume_centered=False)
+    cov_lw = lw.covariance_
+    corr_lw = cov2corr(cov_lw)
 
 ```
 ## sympy

@@ -62,7 +62,7 @@ No warnings appeared during the operation of FawltyDeps.
 
 ## mlxtend
 
-In this package, the unused dependencies are `mkdocs` and `setuptools`. Several packages were found that are used but not included in the requirements, including: `dlib`, `imageio`, `scikit-image`.  FawltyDeps also detected tensorflow as an undeclared dependency, but the example below shows that it was used in the test function.
+In this package, the unused dependencies are `mkdocs` and `nbconvert`. No significant undeclared dependencies were found, however FawltyDeps detected tensorflow as an undeclared dependency, but the example below shows that it was used in the test function.
 
 **path**:  `.repositories/mlxtend/mlxtend/evaluate/tests/test_bias_variance_decomp.py` **line number**: 118
 
@@ -110,25 +110,13 @@ try:
         pass
 ```
 
-# pandas
+No unused dependencies found.
 
-A great deal of undeclared dependencies were found in pandas. We will highlight the dependencies related to `PyQt5`.  This package is found in all lists (imports, declared_deps, unused_deps, undeclared_deps). This may be a problem related to the operation of FawltyDeps, which should be identified and fixed. 
+## pandas
 
-**path**: `.repositories/pandas/pandas/io/clipboard/__init__.py`
+A great deal of undeclared dependencies were found in pandas, the occurrence of which is unlikely to be an error due to the fact that python is a dynamic language.
 
-**line number**: 145
-
-```python
-        try:
-            from PyQt5.QtWidgets import QApplication
-        except ImportError:
-            from PyQt4.QtGui import QApplication
-
-    app = QApplication.instance()
-    if app is None:
-```
-
-In addition, the presence of `__main__` in undeclared dependencies may be questionable.
+The presence of `__main__` in undeclared dependencies may be questionable.
 
 **path**: `.repositories/pandas/pandas/io/formats/console.py` 
 
@@ -219,7 +207,7 @@ There is also a `sphinx*` package in `scipy` that could be ignored.
 
 ## seaborn
 
-Relatively few undeclared dependencies were found in this library. It can be noted that the `fastcluster` package was not included in the library requirements.
+Relatively few undeclared dependencies were found in this library. It can be noted that  `fastcluster` and `pillow` packages were not included in the library requirements.
 
 **path**: `.repositories/seaborn/seaborn/matrix.py` 
 
@@ -254,7 +242,7 @@ In this library, undeclared dependencies occur mainly in the tests/examples file
 
 ## tqdm
 
-The only undeclared dependencies found that are not in the `try..except` block are `matplotlib` and `pandas`.
+The only undeclared dependencies found that are not in the `try..except` block are `matplotlib` and `pandas`. 
 
 **path**: `.repositories/tqdm/tqdm/gui.py` 
 
@@ -281,3 +269,9 @@ The only undeclared dependencies found that are not in the `try..except` block a
                 simplefilter("ignore", category=FutureWarning)
                 from pandas import Panel
 ```
+
+# Summary
+
+No problems were found in the operation of FawltyDeps. This package was able to find dependencies that were used but not declared. 
+
+One can only note the frequent finding of imports in `try...except` or `if...else` blocks. You might consider omitting such dependencies in future versions of FawltyDeps, since these blocks most often contain support for specific libraries that may not be considered required.

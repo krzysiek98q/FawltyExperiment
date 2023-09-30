@@ -54,30 +54,18 @@ except ImportError:
     # by default, use all available backends
 
 ```
-### 2.
-**path**: `.repositories/scipy/scipy/cluster/tests/test_vq.py`
-**line number**: 98
+## cupyx
+### 1.
+**path**: `.repositories/scipy/scipy/special/_support_alternative_backends.py`
+**line number**: 24
 ```python
-        if "cupy" in xp.__name__:
-            import cupy as cp
-            cp.testing.assert_allclose(whiten(obs), desired, rtol=1e-5)
-        else:
-            assert_allclose(whiten(obs), desired, rtol=1e-5)
-
-    @array_api_compatible
-
-```
-### 3.
-**path**: `.repositories/scipy/scipy/cluster/tests/test_vq.py`
-**line number**: 116
-```python
-            if "cupy" in xp.__name__:
-                import cupy as cp
-                cp.testing.assert_allclose(whiten(obs), desired, rtol=1e-5)
-            else:
-                assert_allclose(whiten(obs), desired, rtol=1e-5)
-
-            assert_equal(len(w), 1)
+    elif is_cupy(xp):
+        import cupyx  # type: ignore[import]
+        f = getattr(cupyx.scipy.special, f_name, None)
+    elif xp.__name__ == f"{array_api_compat_prefix}.jax":
+        f = getattr(xp.scipy.special, f_name, None)
+    else:
+        f_scipy = getattr(_ufuncs, f_name, None)
 
 ```
 ## hypothesis
@@ -95,32 +83,6 @@ from scipy._lib._array_api import SCIPY_ARRAY_API, SCIPY_DEVICE
 
 ```
 ### 2.
-**path**: `.repositories/scipy/scipy/_lib/tests/test__util.py`
-**line number**: 11
-```python
-from pytest import raises as assert_raises
-import hypothesis.extra.numpy as npst
-from hypothesis import given, strategies, reproduce_failure  # noqa
-from scipy.conftest import array_api_compatible
-
-from scipy._lib._array_api import xp_assert_equal
-from scipy._lib._util import (_aligned_zeros, check_random_state, MapWrapper,
-
-```
-### 3.
-**path**: `.repositories/scipy/scipy/_lib/tests/test__util.py`
-**line number**: 12
-```python
-import hypothesis.extra.numpy as npst
-from hypothesis import given, strategies, reproduce_failure  # noqa
-from scipy.conftest import array_api_compatible
-
-from scipy._lib._array_api import xp_assert_equal
-from scipy._lib._util import (_aligned_zeros, check_random_state, MapWrapper,
-                              getfullargspec_no_self, FullArgSpec,
-
-```
-### 4.
 **path**: `.repositories/scipy/scipy/stats/tests/test_stats.py`
 **line number**: 14
 ```python
@@ -133,7 +95,7 @@ from numpy.testing import (assert_, assert_equal,
                            assert_almost_equal, assert_array_almost_equal,
 
 ```
-### 5.
+### 3.
 **path**: `.repositories/scipy/scipy/stats/tests/test_stats.py`
 **line number**: 15
 ```python
@@ -144,6 +106,58 @@ import contextlib
 from numpy.testing import (assert_, assert_equal,
                            assert_almost_equal, assert_array_almost_equal,
                            assert_array_equal, assert_approx_equal,
+
+```
+### 4.
+**path**: `.repositories/scipy/scipy/_lib/tests/test__util.py`
+**line number**: 11
+```python
+from pytest import raises as assert_raises
+import hypothesis.extra.numpy as npst
+from hypothesis import given, strategies, reproduce_failure  # noqa
+from scipy.conftest import array_api_compatible
+
+from scipy._lib._array_api import xp_assert_equal
+from scipy._lib._util import (_aligned_zeros, check_random_state, MapWrapper,
+
+```
+### 5.
+**path**: `.repositories/scipy/scipy/_lib/tests/test__util.py`
+**line number**: 12
+```python
+import hypothesis.extra.numpy as npst
+from hypothesis import given, strategies, reproduce_failure  # noqa
+from scipy.conftest import array_api_compatible
+
+from scipy._lib._array_api import xp_assert_equal
+from scipy._lib._util import (_aligned_zeros, check_random_state, MapWrapper,
+                              getfullargspec_no_self, FullArgSpec,
+
+```
+### 6.
+**path**: `.repositories/scipy/scipy/special/tests/test_support_alternative_backends.py`
+**line number**: 2
+```python
+import pytest
+from hypothesis import given, strategies, reproduce_failure  # noqa
+import hypothesis.extra.numpy as npst
+
+from scipy.special._support_alternative_backends import (get_array_special_func,
+                                                         array_special_func_map)
+from scipy.conftest import array_api_compatible
+
+```
+### 7.
+**path**: `.repositories/scipy/scipy/special/tests/test_support_alternative_backends.py`
+**line number**: 3
+```python
+from hypothesis import given, strategies, reproduce_failure  # noqa
+import hypothesis.extra.numpy as npst
+
+from scipy.special._support_alternative_backends import (get_array_special_func,
+                                                         array_special_func_map)
+from scipy.conftest import array_api_compatible
+from scipy import special
 
 ```
 ## packaging
@@ -242,19 +256,6 @@ def configuration(parent_package='', top_path=None):
 
 ```
 ### 4.
-**path**: `.repositories/scipy/scipy/fft/_pocketfft/setup.py`
-**line number**: 30
-```python
-    from numpy.distutils.misc_util import Configuration
-    import pybind11
-    include_dirs = [pybind11.get_include(True), pybind11.get_include(False)]
-
-    config = Configuration('_pocketfft', parent_package, top_path)
-    ext = config.add_extension('pypocketfft',
-                               sources=['pypocketfft.cxx'],
-
-```
-### 5.
 **path**: `.repositories/scipy/scipy/spatial/setup.py`
 **line number**: 26
 ```python
@@ -265,6 +266,19 @@ def configuration(parent_package='', top_path=None):
 
     config.add_data_dir('tests')
 
+
+```
+### 5.
+**path**: `.repositories/scipy/scipy/fft/_pocketfft/setup.py`
+**line number**: 30
+```python
+    from numpy.distutils.misc_util import Configuration
+    import pybind11
+    include_dirs = [pybind11.get_include(True), pybind11.get_include(False)]
+
+    config = Configuration('_pocketfft', parent_package, top_path)
+    ext = config.add_extension('pypocketfft',
+                               sources=['pypocketfft.cxx'],
 
 ```
 ## pythran
@@ -282,14 +296,14 @@ def configuration(parent_package='', top_path=None):
 
 ```
 ### 2.
-**path**: `.repositories/scipy/scipy/stats/setup.py`
-**line number**: 45
+**path**: `.repositories/scipy/scipy/linalg/setup.py`
+**line number**: 110
 ```python
     if int(os.environ.get('SCIPY_USE_PYTHRAN', 1)):
         import pythran
         ext = pythran.dist.PythranExtension(
-            'scipy.stats._stats_pythran',
-            sources=["scipy/stats/_stats_pythran.py"],
+            'scipy.linalg._matfuncs_sqrtm_triu',
+            sources=["scipy/linalg/_matfuncs_sqrtm_triu.py"],
             config=['compiler.blas=none'])
         config.ext_modules.append(ext)
 
@@ -308,6 +322,19 @@ def configuration(parent_package='', top_path=None):
 
 ```
 ### 4.
+**path**: `.repositories/scipy/scipy/stats/setup.py`
+**line number**: 45
+```python
+    if int(os.environ.get('SCIPY_USE_PYTHRAN', 1)):
+        import pythran
+        ext = pythran.dist.PythranExtension(
+            'scipy.stats._stats_pythran',
+            sources=["scipy/stats/_stats_pythran.py"],
+            config=['compiler.blas=none'])
+        config.ext_modules.append(ext)
+
+```
+### 5.
 **path**: `.repositories/scipy/scipy/interpolate/setup.py`
 **line number**: 61
 ```python
@@ -320,21 +347,21 @@ def configuration(parent_package='', top_path=None):
             )
 
 ```
-### 5.
-**path**: `.repositories/scipy/scipy/linalg/setup.py`
-**line number**: 110
-```python
-    if int(os.environ.get('SCIPY_USE_PYTHRAN', 1)):
-        import pythran
-        ext = pythran.dist.PythranExtension(
-            'scipy.linalg._matfuncs_sqrtm_triu',
-            sources=["scipy/linalg/_matfuncs_sqrtm_triu.py"],
-            config=['compiler.blas=none'])
-        config.ext_modules.append(ext)
-
-```
 ## scikits
 ### 1.
+**path**: `.repositories/scipy/scipy/sparse/linalg/_dsolve/tests/test_linsolve.py`
+**line number**: 33
+```python
+try:
+    import scikits.umfpack as umfpack
+    has_umfpack = True
+except ImportError:
+    has_umfpack = False
+
+def toarray(a):
+
+```
+### 2.
 **path**: `.repositories/scipy/scipy/optimize/_linprog_ip.py`
 **line number**: 37
 ```python
@@ -347,7 +374,7 @@ except ImportError:
 def _get_solver(M, sparse=False, lstsq=False, sym_pos=True,
 
 ```
-### 2.
+### 3.
 **path**: `.repositories/scipy/scipy/sparse/linalg/_dsolve/linsolve.py`
 **line number**: 15
 ```python
@@ -358,19 +385,6 @@ except ImportError:
 
 useUmfpack = not noScikit
 
-
-```
-### 3.
-**path**: `.repositories/scipy/scipy/sparse/linalg/_dsolve/tests/test_linsolve.py`
-**line number**: 33
-```python
-try:
-    import scikits.umfpack as umfpack
-    has_umfpack = True
-except ImportError:
-    has_umfpack = False
-
-def toarray(a):
 
 ```
 ### 4.
@@ -388,6 +402,19 @@ try:
 ```
 ## sksparse
 ### 1.
+**path**: `.repositories/scipy/scipy/optimize/_trustregion_constr/tests/test_projections.py`
+**line number**: 10
+```python
+try:
+    from sksparse.cholmod import cholesky_AAt  # noqa: F401
+    sksparse_available = True
+    available_sparse_methods = ("NormalEquation", "AugmentedSystem")
+except ImportError:
+    sksparse_available = False
+    available_sparse_methods = ("AugmentedSystem",)
+
+```
+### 2.
 **path**: `.repositories/scipy/scipy/optimize/_linprog_ip.py`
 **line number**: 31
 ```python
@@ -400,7 +427,7 @@ except ImportError:
 try:
 
 ```
-### 2.
+### 3.
 **path**: `.repositories/scipy/scipy/optimize/_linprog_ip.py`
 **line number**: 32
 ```python
@@ -413,7 +440,7 @@ try:
     import scikits.umfpack  # test whether to use factorized
 
 ```
-### 3.
+### 4.
 **path**: `.repositories/scipy/scipy/optimize/_linprog_ip.py`
 **line number**: 33
 ```python
@@ -426,7 +453,7 @@ try:
 except ImportError:
 
 ```
-### 4.
+### 5.
 **path**: `.repositories/scipy/scipy/optimize/_trustregion_constr/projections.py`
 **line number**: 8
 ```python
@@ -437,19 +464,6 @@ except ImportError:
     import warnings
     sksparse_available = False
 import numpy as np
-
-```
-### 5.
-**path**: `.repositories/scipy/scipy/optimize/_trustregion_constr/tests/test_projections.py`
-**line number**: 10
-```python
-try:
-    from sksparse.cholmod import cholesky_AAt  # noqa: F401
-    sksparse_available = True
-    available_sparse_methods = ("NormalEquation", "AugmentedSystem")
-except ImportError:
-    sksparse_available = False
-    available_sparse_methods = ("AugmentedSystem",)
 
 ```
 ### 6.
@@ -480,19 +494,6 @@ def _assert_iteration_limit_reached(res, maxiter):
 ```
 ## sympy
 ### 1.
-**path**: `.repositories/scipy/scipy/special/tests/test_precompute_utils.py`
-**line number**: 8
-```python
-try:
-    import sympy
-except ImportError:
-    sympy = MissingModule('sympy')
-
-try:
-    import mpmath as mp
-
-```
-### 2.
 **path**: `.repositories/scipy/scipy/special/tests/test_precompute_expn_asy.py`
 **line number**: 7
 ```python
@@ -505,7 +506,7 @@ except ImportError:
 
 
 ```
-### 3.
+### 2.
 **path**: `.repositories/scipy/scipy/special/tests/test_precompute_expn_asy.py`
 **line number**: 8
 ```python
@@ -516,6 +517,19 @@ except ImportError:
 
 
 @check_version(sympy, "1.0")
+
+```
+### 3.
+**path**: `.repositories/scipy/scipy/special/_precompute/utils.py`
+**line number**: 7
+```python
+try:
+    from sympy.abc import x
+except ImportError:
+    pass
+
+
+def lagrange_inversion(a):
 
 ```
 ### 4.
@@ -532,58 +546,32 @@ try:
 
 ```
 ### 5.
-**path**: `.repositories/scipy/scipy/special/_precompute/expn_asy.py`
+**path**: `.repositories/scipy/scipy/special/_precompute/wright_bessel.py`
 **line number**: 13
 ```python
 try:
     import sympy
-    from sympy import Poly
-    x = sympy.symbols('x')
+    from sympy import EulerGamma, Rational, S, Sum, \
+        factorial, gamma, gammasimp, pi, polygamma, symbols, zeta
+    from sympy.polys.polyfuncs import horner
 except ImportError:
     pass
-
 
 ```
 ### 6.
-**path**: `.repositories/scipy/scipy/special/_precompute/expn_asy.py`
+**path**: `.repositories/scipy/scipy/special/_precompute/wright_bessel.py`
 **line number**: 14
 ```python
     import sympy
-    from sympy import Poly
-    x = sympy.symbols('x')
+    from sympy import EulerGamma, Rational, S, Sum, \
+        factorial, gamma, gammasimp, pi, polygamma, symbols, zeta
+    from sympy.polys.polyfuncs import horner
 except ImportError:
     pass
-
 
 
 ```
 ### 7.
-**path**: `.repositories/scipy/scipy/special/_precompute/wright_bessel.py`
-**line number**: 13
-```python
-try:
-    import sympy
-    from sympy import EulerGamma, Rational, S, Sum, \
-        factorial, gamma, gammasimp, pi, polygamma, symbols, zeta
-    from sympy.polys.polyfuncs import horner
-except ImportError:
-    pass
-
-```
-### 8.
-**path**: `.repositories/scipy/scipy/special/_precompute/wright_bessel.py`
-**line number**: 14
-```python
-    import sympy
-    from sympy import EulerGamma, Rational, S, Sum, \
-        factorial, gamma, gammasimp, pi, polygamma, symbols, zeta
-    from sympy.polys.polyfuncs import horner
-except ImportError:
-    pass
-
-
-```
-### 9.
 **path**: `.repositories/scipy/scipy/special/_precompute/wright_bessel.py`
 **line number**: 16
 ```python
@@ -596,7 +584,7 @@ except ImportError:
 def series_small_a():
 
 ```
-### 10.
+### 8.
 **path**: `.repositories/scipy/scipy/interpolate/_interpnd_info.py`
 **line number**: 6
 ```python
@@ -609,17 +597,43 @@ def _estimate_gradients_2d_global():
     #
 
 ```
-### 11.
-**path**: `.repositories/scipy/scipy/special/_precompute/utils.py`
-**line number**: 7
+### 9.
+**path**: `.repositories/scipy/scipy/special/_precompute/expn_asy.py`
+**line number**: 13
 ```python
 try:
-    from sympy.abc import x
+    import sympy
+    from sympy import Poly
+    x = sympy.symbols('x')
 except ImportError:
     pass
 
 
-def lagrange_inversion(a):
+```
+### 10.
+**path**: `.repositories/scipy/scipy/special/_precompute/expn_asy.py`
+**line number**: 14
+```python
+    import sympy
+    from sympy import Poly
+    x = sympy.symbols('x')
+except ImportError:
+    pass
+
+
+
+```
+### 11.
+**path**: `.repositories/scipy/scipy/special/tests/test_precompute_utils.py`
+**line number**: 8
+```python
+try:
+    import sympy
+except ImportError:
+    sympy = MissingModule('sympy')
+
+try:
+    import mpmath as mp
 
 ```
 ## torch

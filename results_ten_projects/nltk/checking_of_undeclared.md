@@ -136,20 +136,6 @@ import subprocess
    "source": [
 
 ```
-## pycrfsuite
-### 1.
-**path**: `.repositories/nltk/nltk/tag/crf.py`
-**line number**: 18
-```python
-try:
-    import pycrfsuite
-except ImportError:
-    pass
-
-
-class CRFTagger(TaggerI):
-
-```
 ## pygame
 ### 1.
 **path**: `.repositories/nltk/nltk/corpus/reader/timit.py`
@@ -166,67 +152,6 @@ class CRFTagger(TaggerI):
 ```
 ## pytest
 ### 1.
-**path**: `.repositories/nltk/nltk/test/childes_fixt.py`
-**line number**: 2
-```python
-def setup_module():
-    import pytest
-
-    import nltk.data
-
-    try:
-        nltk.data.find("corpora/childes/data-xml/Eng-USA-MOR/")
-
-```
-### 2.
-**path**: `.repositories/nltk/nltk/test/portuguese_en_fixt.py`
-**line number**: 2
-```python
-def setup_module():
-    import pytest
-
-    pytest.skip("portuguese_en.doctest imports nltk.examples.pt which doesn't exist!")
-
-```
-### 3.
-**path**: `.repositories/nltk/nltk/test/unit/test_cfd_mutation.py`
-**line number**: 3
-```python
-
-import pytest
-
-from nltk import ConditionalFreqDist, tokenize
-
-
-class TestEmptyCondFreq(unittest.TestCase):
-
-```
-### 4.
-**path**: `.repositories/nltk/nltk/test/unit/test_classify.py`
-**line number**: 4
-```python
-"""
-import pytest
-
-from nltk import classify
-
-TRAIN = [
-    (dict(a=1, b=1, c=1), "y"),
-
-```
-### 5.
-**path**: `.repositories/nltk/nltk/test/unit/test_data.py`
-**line number**: 1
-```python
-import pytest
-
-import nltk.data
-
-
-def test_find_raises_exception():
-
-```
-### 6.
 **path**: `.repositories/nltk/nltk/test/unit/test_rte_classify.py`
 **line number**: 1
 ```python
@@ -238,187 +163,7 @@ from nltk.corpus import rte as rte_corpus
 
 
 ```
-### 7.
-**path**: `.repositories/nltk/nltk/test/conftest.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk.corpus.reader import CorpusReader
-
-
-@pytest.fixture(autouse=True)
-
-```
-### 8.
-**path**: `.repositories/nltk/nltk/test/unit/lm/test_counter.py`
-**line number**: 10
-```python
-
-import pytest
-
-from nltk import FreqDist
-from nltk.lm import NgramCounter
-from nltk.util import everygrams
-
-
-```
-### 9.
-**path**: `.repositories/nltk/nltk/test/probability_fixt.py`
-**line number**: 6
-```python
-def setup_module():
-    import pytest
-
-    pytest.importorskip("numpy")
-
-```
-### 10.
-**path**: `.repositories/nltk/nltk/test/unit/test_util.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk.util import everygrams
-
-
-@pytest.fixture
-
-```
-### 11.
-**path**: `.repositories/nltk/nltk/test/unit/test_corpora.py`
-**line number**: 3
-```python
-
-import pytest
-
-from nltk.corpus import (  # mwa_ppdb
-    cess_cat,
-    cess_esp,
-    conll2007,
-
-```
-### 12.
-**path**: `.repositories/nltk/nltk/test/unit/test_corenlp.py`
-**line number**: 8
-```python
-
-import pytest
-
-from nltk.parse import corenlp
-from nltk.tree import Tree
-
-
-
-```
-### 13.
-**path**: `.repositories/nltk/nltk/test/gensim_fixt.py`
-**line number**: 2
-```python
-def setup_module():
-    import pytest
-
-    pytest.importorskip("gensim")
-
-```
-### 14.
-**path**: `.repositories/nltk/nltk/test/unit/test_tag.py`
-**line number**: 21
-```python
-def setup_module(module):
-    import pytest
-
-    pytest.importorskip("numpy")
-
-```
-### 15.
-**path**: `.repositories/nltk/nltk/test/unit/test_seekable_unicode_stream_reader.py`
-**line number**: 4
-```python
-
-import pytest
-
-from nltk.corpus.reader import SeekableUnicodeStreamReader
-
-
-def check_reader(unicode_string, encoding):
-
-```
-### 16.
-**path**: `.repositories/nltk/nltk/test/unit/test_distance.py`
-**line number**: 3
-```python
-
-import pytest
-
-from nltk.metrics.distance import edit_distance
-
-
-class TestEditDistance:
-
-```
-### 17.
-**path**: `.repositories/nltk/nltk/test/unit/test_json2csv_corpus.py`
-**line number**: 14
-```python
-
-import pytest
-
-from nltk.corpus import twitter_samples
-from nltk.twitter.common import json2csv, json2csv_entities
-
-
-
-```
-### 18.
-**path**: `.repositories/nltk/nltk/test/unit/test_hmm.py`
-**line number**: 1
-```python
-import pytest
-
-from nltk.tag import hmm
-
-
-def _wikipedia_example_hmm():
-
-```
-### 19.
-**path**: `.repositories/nltk/nltk/test/unit/lm/test_models.py`
-**line number**: 10
-```python
-
-import pytest
-
-from nltk.lm import (
-    MLE,
-    AbsoluteDiscountingInterpolated,
-    KneserNeyInterpolated,
-
-```
-### 20.
-**path**: `.repositories/nltk/nltk/test/classify_fixt.py`
-**line number**: 3
-```python
-def setup_module():
-    import pytest
-
-    pytest.importorskip("numpy")
-
-```
-### 21.
-**path**: `.repositories/nltk/nltk/test/unit/test_twitter_auth.py`
-**line number**: 7
-```python
-
-import pytest
-
-pytest.importorskip("twython")
-
-from nltk.twitter import Authenticate
-
-
-```
-### 22.
+### 2.
 **path**: `.repositories/nltk/nltk/test/gluesemantics_malt_fixt.py`
 **line number**: 2
 ```python
@@ -431,20 +176,125 @@ def setup_module():
         depparser = MaltParser()
 
 ```
-### 23.
-**path**: `.repositories/nltk/nltk/test/unit/test_tokenize.py`
-**line number**: 7
+### 3.
+**path**: `.repositories/nltk/nltk/test/conftest.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk.corpus.reader import CorpusReader
+
+
+@pytest.fixture(autouse=True)
+
+```
+### 4.
+**path**: `.repositories/nltk/nltk/test/childes_fixt.py`
+**line number**: 2
+```python
+def setup_module():
+    import pytest
+
+    import nltk.data
+
+    try:
+        nltk.data.find("corpora/childes/data-xml/Eng-USA-MOR/")
+
+```
+### 5.
+**path**: `.repositories/nltk/nltk/test/probability_fixt.py`
+**line number**: 6
+```python
+def setup_module():
+    import pytest
+
+    pytest.importorskip("numpy")
+
+```
+### 6.
+**path**: `.repositories/nltk/nltk/test/unit/test_data.py`
+**line number**: 1
+```python
+import pytest
+
+import nltk.data
+
+
+def test_find_raises_exception():
+
+```
+### 7.
+**path**: `.repositories/nltk/nltk/test/unit/test_util.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk.util import everygrams
+
+
+@pytest.fixture
+
+```
+### 8.
+**path**: `.repositories/nltk/nltk/test/unit/test_seekable_unicode_stream_reader.py`
+**line number**: 4
 ```python
 
 import pytest
 
-from nltk.tokenize import (
-    LegalitySyllableTokenizer,
-    StanfordSegmenter,
-    SyllableTokenizer,
+from nltk.corpus.reader import SeekableUnicodeStreamReader
+
+
+def check_reader(unicode_string, encoding):
 
 ```
-### 24.
+### 9.
+**path**: `.repositories/nltk/nltk/test/unit/test_corpora.py`
+**line number**: 3
+```python
+
+import pytest
+
+from nltk.corpus import (  # mwa_ppdb
+    cess_cat,
+    cess_esp,
+    conll2007,
+
+```
+### 10.
+**path**: `.repositories/nltk/nltk/test/gensim_fixt.py`
+**line number**: 2
+```python
+def setup_module():
+    import pytest
+
+    pytest.importorskip("gensim")
+
+```
+### 11.
+**path**: `.repositories/nltk/nltk/test/unit/test_json2csv_corpus.py`
+**line number**: 14
+```python
+
+import pytest
+
+from nltk.corpus import twitter_samples
+from nltk.twitter.common import json2csv, json2csv_entities
+
+
+
+```
+### 12.
+**path**: `.repositories/nltk/nltk/test/unit/test_tag.py`
+**line number**: 21
+```python
+def setup_module(module):
+    import pytest
+
+    pytest.importorskip("numpy")
+
+```
+### 13.
 **path**: `.repositories/nltk/nltk/test/setup_fixt.py`
 **line number**: 7
 ```python
@@ -457,7 +307,7 @@ from nltk.tokenize import (
         pytest.skip(f"Skipping test because the {binary} binary was not found.")
 
 ```
-### 25.
+### 14.
 **path**: `.repositories/nltk/nltk/test/setup_fixt.py`
 **line number**: 22
 ```python
@@ -469,7 +319,30 @@ from nltk.tokenize import (
     )
 
 ```
-### 26.
+### 15.
+**path**: `.repositories/nltk/nltk/test/unit/test_classify.py`
+**line number**: 4
+```python
+"""
+import pytest
+
+from nltk import classify
+
+TRAIN = [
+    (dict(a=1, b=1, c=1), "y"),
+
+```
+### 16.
+**path**: `.repositories/nltk/nltk/test/classify_fixt.py`
+**line number**: 3
+```python
+def setup_module():
+    import pytest
+
+    pytest.importorskip("numpy")
+
+```
+### 17.
 **path**: `.repositories/nltk/nltk/test/unit/test_bllip.py`
 **line number**: 1
 ```python
@@ -481,96 +354,117 @@ from nltk.tree import Tree
 
 
 ```
-## sklearn
-### 1.
-**path**: `.repositories/nltk/nltk/classify/scikitlearn.py`
-**line number**: 38
+### 18.
+**path**: `.repositories/nltk/nltk/test/unit/test_corenlp.py`
+**line number**: 8
 ```python
-try:
-    from sklearn.feature_extraction import DictVectorizer
-    from sklearn.preprocessing import LabelEncoder
-except ImportError:
-    pass
 
-__all__ = ["SklearnClassifier"]
+import pytest
 
-```
-### 2.
-**path**: `.repositories/nltk/nltk/classify/scikitlearn.py`
-**line number**: 39
-```python
-    from sklearn.feature_extraction import DictVectorizer
-    from sklearn.preprocessing import LabelEncoder
-except ImportError:
-    pass
+from nltk.parse import corenlp
+from nltk.tree import Tree
 
-__all__ = ["SklearnClassifier"]
 
 
 ```
-### 3.
-**path**: `.repositories/nltk/nltk/classify/scikitlearn.py`
-**line number**: 124
+### 19.
+**path**: `.repositories/nltk/nltk/test/unit/test_distance.py`
+**line number**: 3
 ```python
-if __name__ == "__main__":
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.naive_bayes import BernoulliNB
 
-    from nltk.classify.util import names_demo, names_demo_features
+import pytest
 
-    # Bernoulli Naive Bayes is designed for binary classification. We set the
+from nltk.metrics.distance import edit_distance
+
+
+class TestEditDistance:
 
 ```
-### 4.
-**path**: `.repositories/nltk/nltk/classify/scikitlearn.py`
-**line number**: 125
+### 20.
+**path**: `.repositories/nltk/nltk/test/unit/test_tokenize.py`
+**line number**: 7
 ```python
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.naive_bayes import BernoulliNB
 
-    from nltk.classify.util import names_demo, names_demo_features
+import pytest
 
-    # Bernoulli Naive Bayes is designed for binary classification. We set the
-    # binarize option to False since we know we're passing boolean features.
+from nltk.tokenize import (
+    LegalitySyllableTokenizer,
+    StanfordSegmenter,
+    SyllableTokenizer,
 
 ```
-### 5.
-**path**: `.repositories/nltk/nltk/parse/transitionparser.py`
-**line number**: 18
+### 21.
+**path**: `.repositories/nltk/nltk/test/portuguese_en_fixt.py`
+**line number**: 2
 ```python
-    from scipy import sparse
-    from sklearn import svm
-    from sklearn.datasets import load_svmlight_file
-except ImportError:
-    pass
+def setup_module():
+    import pytest
 
-from nltk.parse import DependencyEvaluator, DependencyGraph, ParserI
+    pytest.skip("portuguese_en.doctest imports nltk.examples.pt which doesn't exist!")
 
 ```
-### 6.
-**path**: `.repositories/nltk/nltk/parse/transitionparser.py`
-**line number**: 19
+### 22.
+**path**: `.repositories/nltk/nltk/test/unit/test_twitter_auth.py`
+**line number**: 7
 ```python
-    from sklearn import svm
-    from sklearn.datasets import load_svmlight_file
-except ImportError:
-    pass
 
-from nltk.parse import DependencyEvaluator, DependencyGraph, ParserI
+import pytest
+
+pytest.importorskip("twython")
+
+from nltk.twitter import Authenticate
 
 
 ```
-### 7.
-**path**: `.repositories/nltk/nltk/sentiment/util.py`
-**line number**: 871
+### 23.
+**path**: `.repositories/nltk/nltk/test/unit/lm/test_counter.py`
+**line number**: 10
 ```python
-if __name__ == "__main__":
-    from sklearn.svm import LinearSVC
 
-    from nltk.classify import MaxentClassifier, NaiveBayesClassifier
-    from nltk.classify.scikitlearn import SklearnClassifier
-    from nltk.twitter.common import _outf_writer, extract_fields
+import pytest
 
+from nltk import FreqDist
+from nltk.lm import NgramCounter
+from nltk.util import everygrams
+
+
+```
+### 24.
+**path**: `.repositories/nltk/nltk/test/unit/lm/test_models.py`
+**line number**: 10
+```python
+
+import pytest
+
+from nltk.lm import (
+    MLE,
+    AbsoluteDiscountingInterpolated,
+    KneserNeyInterpolated,
+
+```
+### 25.
+**path**: `.repositories/nltk/nltk/test/unit/test_cfd_mutation.py`
+**line number**: 3
+```python
+
+import pytest
+
+from nltk import ConditionalFreqDist, tokenize
+
+
+class TestEmptyCondFreq(unittest.TestCase):
+
+```
+### 26.
+**path**: `.repositories/nltk/nltk/test/unit/test_hmm.py`
+**line number**: 1
+```python
+import pytest
+
+from nltk.tag import hmm
+
+
+def _wikipedia_example_hmm():
 
 ```
 ## svgling
@@ -589,19 +483,6 @@ if __name__ == "__main__":
 ```
 ## yaml
 ### 1.
-**path**: `.repositories/nltk/nltk/corpus/reader/markdown.py`
-**line number**: 207
-```python
-    def metadata_reader(self, stream):
-        from yaml import safe_load
-
-        return [
-            safe_load(t.content)
-            for t in self.parser.parse(stream.read())
-            if t.type == "front_matter"
-
-```
-### 2.
 **path**: `.repositories/nltk/nltk/data.py`
 **line number**: 768
 ```python
@@ -612,5 +493,18 @@ if __name__ == "__main__":
     else:
         # The resource is a text format.
         binary_data = opened_resource.read()
+
+```
+### 2.
+**path**: `.repositories/nltk/nltk/corpus/reader/markdown.py`
+**line number**: 207
+```python
+    def metadata_reader(self, stream):
+        from yaml import safe_load
+
+        return [
+            safe_load(t.content)
+            for t in self.parser.parse(stream.read())
+            if t.type == "front_matter"
 
 ```

@@ -1,24 +1,24 @@
 [project]
 name = "mlxtend"
 source_url = "https://github.com/rasbt/mlxtend.git"
-mlxtend_version = "0.22.0"
+mlxtend_version = "0.23.0"
 
 [launching_fawltydeps]
 fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "joblib", "sklearn", "six", "scipy", "imageio", "skimage", "pytest", "tensorflow", "numpy", "matplotlib", "dlib", "psutil", "packaging", "nose", "pandas",]
-declared_deps = [ "scipy", "numpy", "pandas", "scikit-learn", "matplotlib", "joblib", "setuptools", "mkdocs", "pytest",]
-undeclared_deps = [ "dlib", "imageio", "nose", "packaging", "psutil", "six", "skimage", "sklearn", "tensorflow",]
-unused_deps = [ "mkdocs", "scikit-learn", "setuptools",]
+imports = [ "scipy", "pandas", "nose", "tensorflow", "psutil", "sklearn", "joblib", "packaging", "pytest", "numpy", "matplotlib",]
+declared_deps = [ "scipy", "numpy", "pandas", "scikit-learn", "matplotlib", "joblib", "mkdocs", "python-markdown-math", "mkdocs-bootswatch", "nbconvert", "pytest",]
+undeclared_deps = [ "nose", "packaging", "psutil", "tensorflow",]
+unused_deps = [ "mkdocs", "mkdocs-bootswatch", "nbconvert", "python-markdown-math",]
 
 [launching_fawltydeps.settings]
 actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/mlxtend/mlxtend",]
 deps = [ ".repositories/mlxtend/mlxtend",]
-pyenvs = [ ".repositories/mlxtend/mlxtend",]
+pyenvs = [ ".repositories/mlxtend/mlxtend/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

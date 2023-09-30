@@ -104,7 +104,7 @@ if __name__ == '__main__':
         # creation of an object for the automatic execution of
         # the experiment and cloning of the repository
         fawlty_exp = FawltyInPractice(package_name, save_loc, mapping_name=mapping)
-        fawlty_exp.clone_package()
+        fawlty_exp.clone_package(fawlty_version='0.13.0')
         
         # launching FawltyDeps
         out_check, err_check = fawlty_exp.run_fawlty_deps(['--json'])

@@ -54,138 +54,6 @@ from kivy.logger import Logger
                 Logger.info('leapmotion: Initialized')
 
 ```
-## PIL
-### 1.
-**path**: `.repositories/Kivy/kivy/core/image/img_pil.py`
-**line number**: 11
-```python
-    # for python3
-    from PIL import Image as PILImage
-
-from kivy.logger import Logger
-from kivy.core.image import ImageLoaderBase, ImageData, ImageLoader
-
-try:
-
-```
-### 2.
-**path**: `.repositories/Kivy/kivy/tests/common.py`
-**line number**: 331
-```python
-        from tkinter import Tk, Label, LEFT, RIGHT, BOTTOM, Button
-        from PIL import Image, ImageTk
-
-        self.retval = False
-
-        root = Tk()
-
-
-```
-### 3.
-**path**: `.repositories/Kivy/kivy/tests/common.py`
-**line number**: 362
-```python
-        from tkinter import Tk, Label, LEFT, RIGHT, BOTTOM, Button
-        from PIL import Image, ImageTk
-
-        self.retval = False
-
-        root = Tk()
-
-
-```
-### 4.
-**path**: `.repositories/Kivy/kivy/core/text/text_pil.py`
-**line number**: 7
-```python
-
-from PIL import Image, ImageFont, ImageDraw
-
-
-from kivy.compat import text_type
-from kivy.core.text import LabelBase
-from kivy.core.image import ImageData
-
-```
-### 5.
-**path**: `.repositories/Kivy/kivy/tools/generate-icons.py`
-**line number**: 10
-```python
-import sys
-from PIL import Image
-from os.path import exists, join, realpath, basename, dirname
-from os import makedirs
-from argparse import ArgumentParser
-
-
-
-```
-### 6.
-**path**: `.repositories/Kivy/kivy/tools/texturecompress.py`
-**line number**: 33
-```python
-from subprocess import Popen
-from PIL import Image
-from argparse import ArgumentParser
-from sys import exit
-from os.path import join, exists, dirname, basename
-from os import environ, unlink
-
-
-```
-### 7.
-**path**: `.repositories/Kivy/kivy/atlas.py`
-**line number**: 273
-```python
-        try:
-            from PIL import Image
-        except ImportError:
-            Logger.critical('Atlas: Imaging/PIL are missing')
-            raise
-
-        if isinstance(size, (tuple, list)):
-
-```
-## PyInstaller
-### 1.
-**path**: `.repositories/Kivy/kivy/tools/packaging/pyinstaller_hooks/__init__.py`
-**line number**: 81
-```python
-from kivy.factory import Factory
-from PyInstaller.depend import bindepend
-
-from os import environ
-if 'KIVY_DOC' not in environ:
-    from PyInstaller.utils.hooks import collect_submodules
-
-
-```
-### 2.
-**path**: `.repositories/Kivy/kivy/tools/packaging/pyinstaller_hooks/__init__.py`
-**line number**: 85
-```python
-if 'KIVY_DOC' not in environ:
-    from PyInstaller.utils.hooks import collect_submodules
-
-    curdir = dirname(__file__)
-
-    kivy_modules = [
-        'xml.etree.cElementTree',
-
-```
-### 3.
-**path**: `.repositories/Kivy/kivy/tests/pyinstaller/test_pyinstaller.py`
-**line number**: 12
-```python
-    try:
-        import PyInstaller
-    except ImportError:
-        pytestmark = pytest.mark.skip("PyInstaller is not available")
-
-
-@pytest.mark.incremental
-
-```
 ## __main__
 ### 1.
 **path**: `.repositories/Kivy/kivy/garden/__init__.py`
@@ -202,45 +70,19 @@ class GardenImporter(object):
 ```
 ## android
 ### 1.
-**path**: `.repositories/Kivy/kivy/core/window/window_pygame.py`
-**line number**: 31
+**path**: `.repositories/Kivy/kivy/core/audio/audio_android.py`
+**line number**: 8
 ```python
-    if platform == 'android':
-        import android
-except ImportError:
-    pass
+from jnius import autoclass, java_method, PythonJavaClass
+from android import api_version
+from kivy.core.audio import Sound, SoundLoader
 
-# late binding
-glReadPixels = GL_RGBA = GL_UNSIGNED_BYTE = None
+
+MediaPlayer = autoclass("android.media.MediaPlayer")
+AudioManager = autoclass("android.media.AudioManager")
 
 ```
 ### 2.
-**path**: `.repositories/Kivy/kivy/app.py`
-**line number**: 979
-```python
-        if platform == 'android':
-            from android import mActivity
-            mActivity.finishAndRemoveTask()
-        else:
-            self._stop()
-
-    def _stop(self, *largs):
-
-```
-### 3.
-**path**: `.repositories/Kivy/kivy/app.py`
-**line number**: 1002
-```python
-        if platform == 'android':
-            from android import mActivity
-            mActivity.moveTaskToBack(True)
-        else:
-            Logger.info('App.pause() is not available on this OS.')
-
-    def on_start(self):
-
-```
-### 4.
 **path**: `.repositories/Kivy/kivy/base.py`
 **line number**: 241
 ```python
@@ -253,7 +95,20 @@ glReadPixels = GL_RGBA = GL_UNSIGNED_BYTE = None
                 'Could not remove android presplash.')
 
 ```
-### 5.
+### 3.
+**path**: `.repositories/Kivy/kivy/support.py`
+**line number**: 72
+```python
+    try:
+        import android
+    except ImportError:
+        print('Android lib is missing, cannot install android hooks')
+        return
+
+    from kivy.clock import Clock
+
+```
+### 4.
 **path**: `.repositories/Kivy/kivy/core/audio/audio_pygame.py`
 **line number**: 20
 ```python
@@ -266,33 +121,7 @@ glReadPixels = GL_RGBA = GL_UNSIGNED_BYTE = None
         from pygame import mixer
 
 ```
-### 6.
-**path**: `.repositories/Kivy/kivy/core/window/__init__.py`
-**line number**: 660
-```python
-        if not android:
-            import android
-        return android.get_keyboard_height()
-
-    def _get_kivy_vkheight(self):
-        mode = Config.get('kivy', 'keyboard_mode')
-        if (
-
-```
-### 7.
-**path**: `.repositories/Kivy/kivy/core/window/__init__.py`
-**line number**: 2014
-```python
-        if key == 27 and platform == 'android':
-            from android import mActivity
-            mActivity.moveTaskToBack(True)
-            return True
-        elif WindowBase.on_keyboard.exit_on_escape:
-            if key == 27 or all([is_osx, key in [113, 119], modifier == 1024]):
-                if not self.dispatch('on_request_close', source='keyboard'):
-
-```
-### 8.
+### 5.
 **path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_android.py`
 **line number**: 13
 ```python
@@ -305,7 +134,7 @@ PythonActivity = python_act
 Context = autoclass('android.content.Context')
 
 ```
-### 9.
+### 6.
 **path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_android.py`
 **line number**: 14
 ```python
@@ -318,17 +147,56 @@ Context = autoclass('android.content.Context')
 VER = autoclass('android.os.Build$VERSION')
 
 ```
-### 10.
-**path**: `.repositories/Kivy/kivy/core/audio/audio_android.py`
-**line number**: 8
+### 7.
+**path**: `.repositories/Kivy/kivy/input/providers/androidjoystick.py`
+**line number**: 17
 ```python
-from jnius import autoclass, java_method, PythonJavaClass
-from android import api_version
-from kivy.core.audio import Sound, SoundLoader
+try:
+    import android  # NOQA
+except ImportError:
+    if 'KIVY_DOC' not in os.environ:
+        raise Exception('android lib not found.')
 
+from kivy.logger import Logger
 
-MediaPlayer = autoclass("android.media.MediaPlayer")
-AudioManager = autoclass("android.media.AudioManager")
+```
+### 8.
+**path**: `.repositories/Kivy/kivy/core/window/window_pygame.py`
+**line number**: 31
+```python
+    if platform == 'android':
+        import android
+except ImportError:
+    pass
+
+# late binding
+glReadPixels = GL_RGBA = GL_UNSIGNED_BYTE = None
+
+```
+### 9.
+**path**: `.repositories/Kivy/kivy/core/window/__init__.py`
+**line number**: 660
+```python
+        if not android:
+            import android
+        return android.get_keyboard_height()
+
+    def _get_kivy_vkheight(self):
+        mode = Config.get('kivy', 'keyboard_mode')
+        if (
+
+```
+### 10.
+**path**: `.repositories/Kivy/kivy/core/window/__init__.py`
+**line number**: 2014
+```python
+        if key == 27 and platform == 'android':
+            from android import mActivity
+            mActivity.moveTaskToBack(True)
+            return True
+        elif WindowBase.on_keyboard.exit_on_escape:
+            if key == 27 or all([is_osx, key in [113, 119], modifier == 1024]):
+                if not self.dispatch('on_request_close', source='keyboard'):
 
 ```
 ### 11.
@@ -345,19 +213,6 @@ AudioManager = autoclass("android.media.AudioManager")
 
 ```
 ### 12.
-**path**: `.repositories/Kivy/kivy/input/providers/androidjoystick.py`
-**line number**: 17
-```python
-try:
-    import android  # NOQA
-except ImportError:
-    if 'KIVY_DOC' not in os.environ:
-        raise Exception('android lib not found.')
-
-from kivy.logger import Logger
-
-```
-### 13.
 **path**: `.repositories/Kivy/kivy/core/window/window_sdl2.py`
 **line number**: 256
 ```python
@@ -370,17 +225,30 @@ from kivy.logger import Logger
                     stopTouchApp()
 
 ```
-### 14.
-**path**: `.repositories/Kivy/kivy/support.py`
-**line number**: 72
+### 13.
+**path**: `.repositories/Kivy/kivy/app.py`
+**line number**: 979
 ```python
-    try:
-        import android
-    except ImportError:
-        print('Android lib is missing, cannot install android hooks')
-        return
+        if platform == 'android':
+            from android import mActivity
+            mActivity.finishAndRemoveTask()
+        else:
+            self._stop()
 
-    from kivy.clock import Clock
+    def _stop(self, *largs):
+
+```
+### 14.
+**path**: `.repositories/Kivy/kivy/app.py`
+**line number**: 1002
+```python
+        if platform == 'android':
+            from android import mActivity
+            mActivity.moveTaskToBack(True)
+        else:
+            Logger.info('App.pause() is not available on this OS.')
+
+    def on_start(self):
 
 ```
 ## android_mixer
@@ -399,19 +267,6 @@ except:
 ```
 ## certifi
 ### 1.
-**path**: `.repositories/Kivy/kivy/tests/test_urlrequest/test_urlrequest_requests.py`
-**line number**: 10
-```python
-
-import certifi
-import pytest
-import responses
-from kivy.network.urlrequest import UrlRequestRequests as UrlRequest
-from requests.auth import HTTPBasicAuth
-from responses import matchers
-
-```
-### 2.
 **path**: `.repositories/Kivy/kivy/loader.py`
 **line number**: 337
 ```python
@@ -424,20 +279,20 @@ from responses import matchers
                 fd = urllib.request.urlopen(request, context=ssl_ctx)
 
 ```
-### 3.
-**path**: `.repositories/Kivy/kivy/tests/test_urlrequest/test_urlrequest_urllib.py`
-**line number**: 137
+### 2.
+**path**: `.repositories/Kivy/kivy/tests/test_urlrequest/test_urlrequest_requests.py`
+**line number**: 10
 ```python
-    """Passing a `ca_file` should not crash on http scheme, refs #6946"""
-    import certifi
-    obj = UrlRequestQueue([])
-    queue = obj.queue
-    req = UrlRequest(
-        f"{scheme}://httpbin.org/get",
-        on_success=obj._on_success,
+
+import certifi
+import pytest
+import responses
+from kivy.network.urlrequest import UrlRequestRequests as UrlRequest
+from requests.auth import HTTPBasicAuth
+from responses import matchers
 
 ```
-### 4.
+### 3.
 **path**: `.repositories/Kivy/kivy/network/urlrequest.py`
 **line number**: 230
 ```python
@@ -448,6 +303,19 @@ from responses import matchers
             self.ca_file = ca_file
 
         #: Url of the request
+
+```
+### 4.
+**path**: `.repositories/Kivy/kivy/tests/test_urlrequest/test_urlrequest_urllib.py`
+**line number**: 137
+```python
+    """Passing a `ca_file` should not crash on http scheme, refs #6946"""
+    import certifi
+    obj = UrlRequestQueue([])
+    queue = obj.queue
+    req = UrlRequest(
+        f"{scheme}://httpbin.org/get",
+        on_success=obj._on_success,
 
 ```
 ## coverage
@@ -466,19 +334,6 @@ kv_statement_lines = {4, 5, 6, 8, 9, 12, 15, 17}
 ```
 ## cv2
 ### 1.
-**path**: `.repositories/Kivy/kivy/core/camera/camera_android.py`
-**line number**: 188
-```python
-        import numpy as np
-        from cv2 import cvtColor
-
-        w, h = self._resolution
-        arr = np.fromstring(buf, 'uint8').reshape((h + h / 2, w))
-        arr = cvtColor(arr, 93)  # NV21 -> BGR
-        return arr
-
-```
-### 2.
 **path**: `.repositories/Kivy/kivy/core/camera/camera_opencv.py`
 **line number**: 48
 ```python
@@ -489,6 +344,19 @@ kv_statement_lines = {4, 5, 6, 8, 9, 12, 15, 17}
     except ImportError:
         raise
 
+
+```
+### 2.
+**path**: `.repositories/Kivy/kivy/core/camera/camera_android.py`
+**line number**: 188
+```python
+        import numpy as np
+        from cv2 import cvtColor
+
+        w, h = self._resolution
+        arr = np.fromstring(buf, 'uint8').reshape((h + h / 2, w))
+        arr = cvtColor(arr, 93)  # NV21 -> BGR
+        return arr
 
 ```
 ## dbus
@@ -575,19 +443,6 @@ class ClipboardGtk3(ClipboardBase):
 
 ```
 ### 3.
-**path**: `.repositories/Kivy/kivy/core/camera/camera_gi.py`
-**line number**: 10
-```python
-
-from gi.repository import Gst
-from kivy.clock import Clock
-from kivy.graphics.texture import Texture
-from kivy.core.camera import CameraBase
-from kivy.support import install_gobject_iteration
-from kivy.logger import Logger
-
-```
-### 4.
 **path**: `.repositories/Kivy/kivy/support.py`
 **line number**: 21
 ```python
@@ -598,6 +453,19 @@ from kivy.logger import Logger
 
     if hasattr(gobject, '_gobject_already_installed'):
         # already installed, don't do it twice.
+
+```
+### 4.
+**path**: `.repositories/Kivy/kivy/core/camera/camera_gi.py`
+**line number**: 10
+```python
+
+from gi.repository import Gst
+from kivy.clock import Clock
+from kivy.graphics.texture import Texture
+from kivy.core.camera import CameraBase
+from kivy.support import install_gobject_iteration
+from kivy.logger import Logger
 
 ```
 ## gimpfu
@@ -670,44 +538,6 @@ from gimpfu import *
 ```
 ## jnius
 ### 1.
-**path**: `.repositories/Kivy/kivy/core/camera/camera_android.py`
-**line number**: 1
-```python
-from jnius import autoclass, PythonJavaClass, java_method
-from kivy.clock import Clock
-from kivy.graphics.texture import Texture
-from kivy.graphics import Fbo, Callback, Rectangle
-from kivy.core.camera import CameraBase
-import threading
-
-```
-### 2.
-**path**: `.repositories/Kivy/kivy/app.py`
-**line number**: 853
-```python
-        elif platform == 'android':
-            from jnius import autoclass, cast
-            PythonActivity = autoclass('org.kivy.android.PythonActivity')
-            context = cast('android.content.Context', PythonActivity.mActivity)
-            file_p = cast('java.io.File', context.getFilesDir())
-            data_dir = file_p.getAbsolutePath()
-        elif platform == 'win':
-
-```
-### 3.
-**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_android.py`
-**line number**: 12
-```python
-from kivy.core.clipboard import ClipboardBase
-from jnius import autoclass, cast
-from android.runnable import run_on_ui_thread
-from android import python_act
-
-AndroidString = autoclass('java.lang.String')
-PythonActivity = python_act
-
-```
-### 4.
 **path**: `.repositories/Kivy/kivy/core/audio/audio_android.py`
 **line number**: 7
 ```python
@@ -720,7 +550,32 @@ from kivy.core.audio import Sound, SoundLoader
 MediaPlayer = autoclass("android.media.MediaPlayer")
 
 ```
-### 5.
+### 2.
+**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_android.py`
+**line number**: 12
+```python
+from kivy.core.clipboard import ClipboardBase
+from jnius import autoclass, cast
+from android.runnable import run_on_ui_thread
+from android import python_act
+
+AndroidString = autoclass('java.lang.String')
+PythonActivity = python_act
+
+```
+### 3.
+**path**: `.repositories/Kivy/kivy/core/camera/camera_android.py`
+**line number**: 1
+```python
+from jnius import autoclass, PythonJavaClass, java_method
+from kivy.clock import Clock
+from kivy.graphics.texture import Texture
+from kivy.graphics import Fbo, Callback, Rectangle
+from kivy.core.camera import CameraBase
+import threading
+
+```
+### 4.
 **path**: `.repositories/Kivy/kivy/metrics.py`
 **line number**: 256
 ```python
@@ -733,7 +588,7 @@ MediaPlayer = autoclass("android.media.MediaPlayer")
             value = ios.get_scale()
 
 ```
-### 6.
+### 5.
 **path**: `.repositories/Kivy/kivy/metrics.py`
 **line number**: 291
 ```python
@@ -746,7 +601,7 @@ MediaPlayer = autoclass("android.media.MediaPlayer")
             config = PythonActivity.mActivity.getResources().getConfiguration()
 
 ```
-### 7.
+### 6.
 **path**: `.repositories/Kivy/kivy/metrics.py`
 **line number**: 194
 ```python
@@ -757,6 +612,19 @@ MediaPlayer = autoclass("android.media.MediaPlayer")
             else:
                 import android
                 value = android.get_dpi()
+
+```
+### 7.
+**path**: `.repositories/Kivy/kivy/app.py`
+**line number**: 853
+```python
+        elif platform == 'android':
+            from jnius import autoclass, cast
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            context = cast('android.content.Context', PythonActivity.mActivity)
+            file_p = cast('java.io.File', context.getFilesDir())
+            data_dir = file_p.getAbsolutePath()
+        elif platform == 'win':
 
 ```
 ## kivy_deps
@@ -870,110 +738,6 @@ class CameraPiCamera(CameraBase):
 ```
 ## pygame
 ### 1.
-**path**: `.repositories/Kivy/kivy/core/window/window_pygame.py`
-**line number**: 13
-```python
-# fail early if possible
-import pygame
-
-from kivy.compat import PY2
-from kivy.core.window import WindowBase
-from kivy.core import CoreCriticalException
-from os import environ
-
-```
-### 2.
-**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_pygame.py`
-**line number**: 20
-```python
-try:
-    import pygame
-    import pygame.scrap
-except:
-    raise
-
-
-
-```
-### 3.
-**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_pygame.py`
-**line number**: 21
-```python
-    import pygame
-    import pygame.scrap
-except:
-    raise
-
-
-class ClipboardPygame(ClipboardBase):
-
-```
-### 4.
-**path**: `.repositories/Kivy/kivy/app.py`
-**line number**: 1196
-```python
-        if platform == 'android' and not USE_SDL2:
-            import pygame
-            setting_key = pygame.K_MENU
-
-        if key == setting_key:
-            # toggle settings panel
-            if not self.open_settings():
-
-```
-### 5.
-**path**: `.repositories/Kivy/kivy/core/audio/audio_pygame.py`
-**line number**: 25
-```python
-    else:
-        from pygame import mixer
-except:
-    raise
-
-# init pygame sound
-mixer.pre_init(44100, -16, 2, 1024)
-
-```
-### 6.
-**path**: `.repositories/Kivy/kivy/core/text/text_pygame.py`
-**line number**: 18
-```python
-try:
-    import pygame
-except:
-    raise
-
-pygame_cache = {}
-pygame_font_handles = {}
-
-```
-### 7.
-**path**: `.repositories/Kivy/kivy/core/image/img_pygame.py`
-**line number**: 18
-```python
-try:
-    import pygame
-except:
-    raise
-
-
-class ImageLoaderPygame(ImageLoaderBase):
-
-```
-### 8.
-**path**: `.repositories/Kivy/kivy/input/providers/androidjoystick.py`
-**line number**: 28
-```python
-if 'KIVY_DOC' not in os.environ:
-    import pygame.joystick
-
-
-class AndroidMotionEvent(MotionEvent):
-
-    def __init__(self, *args, **kwargs):
-
-```
-### 9.
 **path**: `.repositories/Kivy/kivy/support.py`
 **line number**: 79
 ```python
@@ -986,34 +750,112 @@ class AndroidMotionEvent(MotionEvent):
     android.init()
 
 ```
-## pyobjus
-### 1.
-**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_nspaste.py`
-**line number**: 13
-```python
-try:
-    from pyobjus import autoclass
-    from pyobjus.dylib_manager import load_framework, INCLUDE
-    load_framework(INCLUDE.AppKit)
-except ImportError:
-    raise SystemError('Pyobjus not installed. Please run the following'
-        ' command to install it. `pip install --user pyobjus`')
-
-```
 ### 2.
-**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_nspaste.py`
-**line number**: 14
+**path**: `.repositories/Kivy/kivy/core/audio/audio_pygame.py`
+**line number**: 25
 ```python
-    from pyobjus import autoclass
-    from pyobjus.dylib_manager import load_framework, INCLUDE
-    load_framework(INCLUDE.AppKit)
-except ImportError:
-    raise SystemError('Pyobjus not installed. Please run the following'
-        ' command to install it. `pip install --user pyobjus`')
+    else:
+        from pygame import mixer
+except:
+    raise
 
+# init pygame sound
+mixer.pre_init(44100, -16, 2, 1024)
 
 ```
 ### 3.
+**path**: `.repositories/Kivy/kivy/core/text/text_pygame.py`
+**line number**: 18
+```python
+try:
+    import pygame
+except:
+    raise
+
+pygame_cache = {}
+pygame_font_handles = {}
+
+```
+### 4.
+**path**: `.repositories/Kivy/kivy/input/providers/androidjoystick.py`
+**line number**: 28
+```python
+if 'KIVY_DOC' not in os.environ:
+    import pygame.joystick
+
+
+class AndroidMotionEvent(MotionEvent):
+
+    def __init__(self, *args, **kwargs):
+
+```
+### 5.
+**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_pygame.py`
+**line number**: 20
+```python
+try:
+    import pygame
+    import pygame.scrap
+except:
+    raise
+
+
+
+```
+### 6.
+**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_pygame.py`
+**line number**: 21
+```python
+    import pygame
+    import pygame.scrap
+except:
+    raise
+
+
+class ClipboardPygame(ClipboardBase):
+
+```
+### 7.
+**path**: `.repositories/Kivy/kivy/core/window/window_pygame.py`
+**line number**: 13
+```python
+# fail early if possible
+import pygame
+
+from kivy.compat import PY2
+from kivy.core.window import WindowBase
+from kivy.core import CoreCriticalException
+from os import environ
+
+```
+### 8.
+**path**: `.repositories/Kivy/kivy/app.py`
+**line number**: 1196
+```python
+        if platform == 'android' and not USE_SDL2:
+            import pygame
+            setting_key = pygame.K_MENU
+
+        if key == setting_key:
+            # toggle settings panel
+            if not self.open_settings():
+
+```
+### 9.
+**path**: `.repositories/Kivy/kivy/core/image/img_pygame.py`
+**line number**: 18
+```python
+try:
+    import pygame
+except:
+    raise
+
+
+class ImageLoaderPygame(ImageLoaderBase):
+
+```
+## pyobjus
+### 1.
 **path**: `.repositories/Kivy/kivy/core/audio/audio_avplayer.py`
 **line number**: 9
 ```python
@@ -1026,7 +868,7 @@ AVAudioPlayer = autoclass("AVAudioPlayer")
 NSURL = autoclass("NSURL")
 
 ```
-### 4.
+### 2.
 **path**: `.repositories/Kivy/kivy/core/audio/audio_avplayer.py`
 **line number**: 10
 ```python
@@ -1037,6 +879,32 @@ load_framework(INCLUDE.AVFoundation)
 AVAudioPlayer = autoclass("AVAudioPlayer")
 NSURL = autoclass("NSURL")
 NSString = autoclass("NSString")
+
+```
+### 3.
+**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_nspaste.py`
+**line number**: 13
+```python
+try:
+    from pyobjus import autoclass
+    from pyobjus.dylib_manager import load_framework, INCLUDE
+    load_framework(INCLUDE.AppKit)
+except ImportError:
+    raise SystemError('Pyobjus not installed. Please run the following'
+        ' command to install it. `pip install --user pyobjus`')
+
+```
+### 4.
+**path**: `.repositories/Kivy/kivy/core/clipboard/clipboard_nspaste.py`
+**line number**: 14
+```python
+    from pyobjus import autoclass
+    from pyobjus.dylib_manager import load_framework, INCLUDE
+    load_framework(INCLUDE.AppKit)
+except ImportError:
+    raise SystemError('Pyobjus not installed. Please run the following'
+        ' command to install it. `pip install --user pyobjus`')
+
 
 ```
 ## pytest_trio
@@ -1055,19 +923,6 @@ NSString = autoclass("NSString")
 ```
 ## redis
 ### 1.
-**path**: `.repositories/Kivy/kivy/storage/redisstore.py`
-**line number**: 38
-```python
-if 'KIVY_DOC' not in os.environ:
-    import redis
-
-
-class RedisStore(AbstractStore):
-    '''Store implementation using a Redis database.
-    See the :mod:`kivy.storage` module documentation for more information.
-
-```
-### 2.
 **path**: `.repositories/Kivy/kivy/tests/test_storage.py`
 **line number**: 69
 ```python
@@ -1078,6 +933,19 @@ class RedisStore(AbstractStore):
                 self._do_store_test_empty(RedisStore(params))
                 self._do_store_test_filled(RedisStore(params))
             except ConnectionError:
+
+```
+### 2.
+**path**: `.repositories/Kivy/kivy/storage/redisstore.py`
+**line number**: 38
+```python
+if 'KIVY_DOC' not in os.environ:
+    import redis
+
+
+class RedisStore(AbstractStore):
+    '''Store implementation using a Redis database.
+    See the :mod:`kivy.storage` module documentation for more information.
 
 ```
 ## setuptools

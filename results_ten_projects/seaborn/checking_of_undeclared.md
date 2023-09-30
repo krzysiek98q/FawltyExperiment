@@ -1,19 +1,6 @@
 # undeclared dependenciec
 ## PIL
 ### 1.
-**path**: `.repositories/seaborn/seaborn/_core/plot.py`
-**line number**: 24
-```python
-import numpy as np
-from PIL import Image
-
-from seaborn._marks.base import Mark
-from seaborn._stats.base import Stat
-from seaborn._core.data import PlotData
-from seaborn._core.moves import Move
-
-```
-### 2.
 **path**: `.repositories/seaborn/seaborn/palettes.py`
 **line number**: 99
 ```python
@@ -24,6 +11,19 @@ from seaborn._core.moves import Move
         X = np.tile(np.linspace(0, 1, IMAGE_SIZE[0]), (IMAGE_SIZE[1], 1))
         pixels = self(X, bytes=True)
         png_bytes = io.BytesIO()
+
+```
+### 2.
+**path**: `.repositories/seaborn/seaborn/_core/plot.py`
+**line number**: 24
+```python
+import numpy as np
+from PIL import Image
+
+from seaborn._marks.base import Mark
+from seaborn._stats.base import Stat
+from seaborn._core.data import PlotData
+from seaborn._core.moves import Move
 
 ```
 ## com
@@ -66,19 +66,6 @@ from seaborn._core.moves import Move
 ```
 ## cycler
 ### 1.
-**path**: `.repositories/seaborn/seaborn/_core/plot.py`
-**line number**: 16
-```python
-
-from cycler import cycler
-import pandas as pd
-from pandas import DataFrame, Series, Index
-import matplotlib as mpl
-from matplotlib.axes import Axes
-from matplotlib.artist import Artist
-
-```
-### 2.
 **path**: `.repositories/seaborn/seaborn/rcmod.py`
 **line number**: 4
 ```python
@@ -89,6 +76,19 @@ from . import palettes
 
 __all__ = ["set_theme", "set", "reset_defaults", "reset_orig",
            "axes_style", "set_style", "plotting_context", "set_context",
+
+```
+### 2.
+**path**: `.repositories/seaborn/seaborn/_core/plot.py`
+**line number**: 16
+```python
+
+from cycler import cycler
+import pandas as pd
+from pandas import DataFrame, Series, Index
+import matplotlib as mpl
+from matplotlib.axes import Axes
+from matplotlib.artist import Artist
 
 ```
 ## fastcluster
@@ -119,18 +119,18 @@ except ImportError:
 
 
 ```
-## sphinx
+## typing_extensions
 ### 1.
-**path**: `.repositories/seaborn/seaborn/external/docscrape.py`
-**line number**: 645
+**path**: `.repositories/seaborn/seaborn/_stats/order.py`
+**line number**: 8
 ```python
-        if 'sphinx' in sys.modules:
-            from sphinx.ext.autodoc import ALL
-        else:
-            ALL = object()
+except ImportError:
+    from typing_extensions import Literal  # type: ignore
 
-        self.show_inherited_members = config.get(
-                    'show_inherited_class_members', True)
+import numpy as np
+from pandas import DataFrame
+
+from seaborn._core.scales import Scale
 
 ```
 ## win32api

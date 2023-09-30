@@ -8,7 +8,7 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "sklearn", "seaborn", "pandas_flavor", "scipy", "mpmath", "tabulate", "statsmodels", "pytest", "numpy", "outdated", "datamatrix", "matplotlib", "pandas",]
+imports = [ "scipy", "pandas", "tabulate", "mpmath", "sklearn", "statsmodels", "pytest", "numpy", "seaborn", "datamatrix", "pandas_flavor", "matplotlib", "outdated",]
 declared_deps = []
 undeclared_deps = [ "datamatrix", "matplotlib", "mpmath", "numpy", "outdated", "pandas", "pandas_flavor", "pytest", "scipy", "seaborn", "sklearn", "statsmodels", "tabulate",]
 unused_deps = []
@@ -18,7 +18,7 @@ actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/pingouin/pingouin",]
 deps = [ ".repositories/pingouin/pingouin",]
-pyenvs = [ ".repositories/pingouin/pingouin",]
+pyenvs = [ ".repositories/pingouin/pingouin/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

@@ -8,17 +8,17 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "sympy", "scipy", "nbformat", "mlabwrap", "pytest", "black", "packaging", "rpy", "pymc", "joblib", "numdifftools", "dateutil", "nitime", "matplotlib", "patsy", "virtualenv", "sphinx", "sklearn", "_pytest", "Cython", "scikits", "models", "jinja2", "numpy", "enthought", "jupyter_client", "nbconvert", "pygments", "tabular", "cvxopt", "typing_extensions", "la", "IPython", "yapf", "finance", "savedrvs", "rpy2", "pandas",]
+imports = [ "patsy", "mlabwrap", "yapf", "finance", "pymc", "nitime", "la", "IPython", "Cython", "dateutil", "rpy", "virtualenv", "numpy", "models", "scipy", "cvxopt", "jinja2", "numdifftools", "jupyter_client", "savedrvs", "packaging", "pytest", "black", "nbconvert", "pygments", "enthought", "pandas", "tabular", "typing_extensions", "sklearn", "joblib", "rpy2", "sympy", "_pytest", "scikits", "matplotlib", "sphinx", "nbformat",]
 declared_deps = [ "numpy", "scipy", "pandas", "patsy", "packaging", "numpy", "scipy", "cython", "cython", "cython", "setuptools-scm", "oldest-supported-numpy", "matplotlib", "colorama", "joblib", "pytest", "pytest-randomly", "pytest-xdist", "flake8", "isort", "pywinpty", "sphinx", "nbconvert", "jupyter-client", "ipykernel", "matplotlib", "nbformat", "numpydoc", "pandas-datareader",]
-undeclared_deps = [ "Cython", "IPython", "_pytest", "black", "cvxopt", "dateutil", "enthought", "finance", "jinja2", "la", "mlabwrap", "models", "nitime", "numdifftools", "pygments", "pymc", "rpy", "rpy2", "savedrvs", "scikits", "sklearn", "sympy", "tabular", "typing_extensions", "virtualenv", "yapf",]
-unused_deps = [ "colorama", "cython", "flake8", "ipykernel", "isort", "numpydoc", "oldest-supported-numpy", "pandas-datareader", "pytest-randomly", "pytest-xdist", "pywinpty", "setuptools-scm",]
+undeclared_deps = [ "IPython", "black", "cvxopt", "dateutil", "enthought", "finance", "jinja2", "la", "mlabwrap", "models", "nitime", "numdifftools", "pygments", "pymc", "rpy", "rpy2", "savedrvs", "scikits", "sklearn", "sympy", "tabular", "typing_extensions", "virtualenv", "yapf",]
+unused_deps = [ "colorama", "flake8", "ipykernel", "isort", "numpydoc", "oldest-supported-numpy", "pandas-datareader", "pytest-randomly", "pytest-xdist", "pywinpty", "setuptools-scm",]
 
 [launching_fawltydeps.settings]
 actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/statsmodels/statsmodels",]
 deps = [ ".repositories/statsmodels/statsmodels",]
-pyenvs = [ ".repositories/statsmodels/statsmodels",]
+pyenvs = [ ".repositories/statsmodels/statsmodels/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

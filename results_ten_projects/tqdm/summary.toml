@@ -8,7 +8,7 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "requests", "ipywidgets", "colorama", "slack_sdk", "tensorflow", "numpy", "IPython", "disco", "setuptools_scm", "matplotlib", "pandas",]
+imports = [ "pandas", "slack_sdk", "tensorflow", "setuptools_scm", "IPython", "ipywidgets", "numpy", "disco", "requests", "colorama", "matplotlib",]
 declared_deps = [ "colorama", "pytest", "pytest-cov", "pytest-timeout", "pytest-xdist", "ipywidgets", "slack-sdk", "requests",]
 undeclared_deps = [ "IPython", "disco", "matplotlib", "numpy", "pandas", "setuptools_scm", "tensorflow",]
 unused_deps = [ "pytest", "pytest-cov", "pytest-timeout", "pytest-xdist",]
@@ -18,7 +18,7 @@ actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/tqdm/tqdm",]
 deps = [ ".repositories/tqdm/tqdm",]
-pyenvs = [ ".repositories/tqdm/tqdm",]
+pyenvs = [ ".repositories/tqdm/tqdm/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

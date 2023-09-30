@@ -8,17 +8,17 @@ fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "pygame", "tqdm", "scipy", "pytest", "networkx", "yaml", "joblib", "click", "mdit_plain", "norm", "numpypy", "markdown_it", "matplotlib", "regex", "sklearn", "twython", "pycrfsuite", "numpy", "pandas", "mdit_py_plugins", "pyparsing", "bllipparser", "svgling", "requests",]
+imports = [ "markdown_it", "networkx", "mdit_py_plugins", "svgling", "numpy", "pygame", "yaml", "numpypy", "click", "scipy", "pycrfsuite", "tqdm", "pyparsing", "pytest", "twython", "requests", "pandas", "regex", "sklearn", "joblib", "bllipparser", "mdit_plain", "matplotlib", "norm",]
 declared_deps = [ "click", "joblib", "regex", "tqdm", "scikit-learn", "python-crfsuite", "requests", "numpy", "pyparsing", "twython", "scipy", "matplotlib", "requests", "numpy", "python-crfsuite", "scikit-learn", "scipy", "matplotlib", "pyparsing", "twython",]
-undeclared_deps = [ "bllipparser", "markdown_it", "mdit_plain", "mdit_py_plugins", "networkx", "norm", "numpypy", "pandas", "pycrfsuite", "pygame", "pytest", "sklearn", "svgling", "yaml",]
-unused_deps = [ "python-crfsuite", "scikit-learn",]
+undeclared_deps = [ "bllipparser", "markdown_it", "mdit_plain", "mdit_py_plugins", "networkx", "norm", "numpypy", "pandas", "pygame", "pytest", "svgling", "yaml",]
+unused_deps = []
 
 [launching_fawltydeps.settings]
 actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/nltk/nltk",]
 deps = [ ".repositories/nltk/nltk",]
-pyenvs = [ ".repositories/nltk/nltk",]
+pyenvs = [ ".repositories/nltk/nltk/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

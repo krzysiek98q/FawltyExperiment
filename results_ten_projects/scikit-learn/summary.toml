@@ -1,24 +1,24 @@
 [project]
 name = "scikit-learn"
 source_url = "https://github.com/scikit-learn/scikit-learn.git"
-scikit-learn_version = "1.3.0"
+scikit-learn_version = "1.3.1"
 
 [launching_fawltydeps]
 fawltydeps_version = "0.13.0"
 
 [experiment_result]
 "number of warnings" = 0
-imports = [ "joblib", "setuptools", "scipy", "_pytest", "typing_extensions", "pooch", "Cython", "pyamg", "pytest", "numpy", "array_api_compat", "threadpoolctl", "PIL", "matplotlib", "numpydoc", "cupy", "pandas",]
+imports = [ "scipy", "pandas", "typing_extensions", "threadpoolctl", "Cython", "joblib", "pyamg", "pooch", "numpydoc", "pytest", "numpy", "_pytest", "setuptools", "array_api_compat", "cupy", "matplotlib", "PIL",]
 declared_deps = [ "numpy", "scipy", "joblib", "threadpoolctl", "matplotlib", "pandas", "memory-profiler", "matplotlib", "scikit-image", "pandas", "seaborn", "memory-profiler", "sphinx", "sphinx-copybutton", "sphinx-gallery", "numpydoc", "Pillow", "pooch", "sphinx-prompt", "sphinxext-opengraph", "plotly", "matplotlib", "scikit-image", "pandas", "seaborn", "pooch", "plotly", "matplotlib", "scikit-image", "pandas", "pytest", "pytest-cov", "ruff", "black", "mypy", "pyamg", "numpydoc", "pooch",]
-undeclared_deps = [ "Cython", "PIL", "_pytest", "array_api_compat", "cupy", "setuptools", "typing_extensions",]
-unused_deps = [ "Pillow", "black", "memory-profiler", "mypy", "plotly", "pytest-cov", "ruff", "scikit-image", "seaborn", "sphinx", "sphinx-copybutton", "sphinx-gallery", "sphinx-prompt", "sphinxext-opengraph",]
+undeclared_deps = [ "Cython", "array_api_compat", "cupy", "setuptools", "typing_extensions",]
+unused_deps = [ "black", "memory-profiler", "mypy", "plotly", "pytest-cov", "ruff", "scikit-image", "seaborn", "sphinx", "sphinx-copybutton", "sphinx-gallery", "sphinx-prompt", "sphinxext-opengraph",]
 
 [launching_fawltydeps.settings]
 actions = [ "check_undeclared", "check_unused",]
 output_format = "json"
 code = [ ".repositories/scikit-learn/sklearn",]
 deps = [ ".repositories/scikit-learn/sklearn",]
-pyenvs = [ ".repositories/scikit-learn/sklearn",]
+pyenvs = [ ".repositories/scikit-learn/sklearn/venv",]
 ignore_undeclared = []
 ignore_unused = []
 install_deps = false

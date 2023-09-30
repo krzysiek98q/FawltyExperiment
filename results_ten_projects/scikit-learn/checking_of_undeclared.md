@@ -15,7 +15,7 @@
 ```
 ### 2.
 **path**: `.repositories/scikit-learn/sklearn/_build_utils/__init__.py`
-**line number**: 90
+**line number**: 92
 ```python
     # Lazy import because cython is not a runtime dependency.
     from Cython import Tempita
@@ -37,73 +37,6 @@
         raise ModuleNotFoundError(message) from e
 
     if parse(Cython.__version__) < parse(CYTHON_MIN_VERSION):
-
-```
-## PIL
-### 1.
-**path**: `.repositories/scikit-learn/sklearn/datasets/tests/test_common.py`
-**line number**: 13
-```python
-    try:
-        import PIL  # noqa
-
-        return True
-    except ImportError:
-        return False
-
-
-```
-### 2.
-**path**: `.repositories/scikit-learn/sklearn/conftest.py`
-**line number**: 213
-```python
-    try:
-        import PIL  # noqa
-
-        pillow_installed = True
-    except ImportError:
-        pillow_installed = False
-
-
-```
-### 3.
-**path**: `.repositories/scikit-learn/sklearn/datasets/_base.py`
-**line number**: 1268
-```python
-    try:
-        from PIL import Image
-    except ImportError:
-        raise ImportError(
-            "The Python Imaging Library (PIL) is required to load data "
-            "from jpeg files. Please refer to "
-            "https://pillow.readthedocs.io/en/stable/installation.html "
-
-```
-### 4.
-**path**: `.repositories/scikit-learn/sklearn/datasets/_lfw.py`
-**line number**: 121
-```python
-    try:
-        from PIL import Image
-    except ImportError:
-        raise ImportError(
-            "The Python Imaging Library (PIL) is required to load data "
-            "from jpeg files. Please refer to "
-            "https://pillow.readthedocs.io/en/stable/installation.html "
-
-```
-## _pytest
-### 1.
-**path**: `.repositories/scikit-learn/sklearn/conftest.py`
-**line number**: 12
-```python
-import pytest
-from _pytest.doctest import DoctestItem
-from threadpoolctl import threadpool_limits
-
-from sklearn import config_context
-from sklearn._min_dependencies import PYTEST_MIN_VERSION
-from sklearn.datasets import (
 
 ```
 ## array_api_compat
