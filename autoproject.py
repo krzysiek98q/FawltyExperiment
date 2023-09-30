@@ -4,6 +4,7 @@
 import os
 import json
 import re
+import warnings
 
 from subprocess import Popen, PIPE
 import subprocess
@@ -62,7 +63,7 @@ class FawltyInPractice:
     def clone_package(
             self, 
             create_venv:bool=True, 
-            install_requires:bool=False,
+            install_requires:bool=True,
             install_fawlty:bool=True,
             fawlty_version:str=None
             ):
@@ -88,6 +89,9 @@ class FawltyInPractice:
             Parameter valid only when 'install_fawlty' parameter is set to True.
         """
         
+        self.install_requires = install_requires
+        self.create_venv = create_venv
+        
         Repo.clone_from(self.source_url, self.save_location)
         
         if self.save_requires:
@@ -95,6 +99,7 @@ class FawltyInPractice:
             requires_path = f'{self.save_location}/{self.mapping_name}/requirements.txt'
             with open(requires_path, 'w') as file:
                 file.write(requires_text)
+                
         if create_venv:
             create_cmd = ["python3", '-m', "venv", self.venv_loc]
             self.venv_out, self.venv_err = self.__terminal(create_cmd)
@@ -106,10 +111,14 @@ class FawltyInPractice:
                 install_fd_cmd = [self.venv_python, '-m', 'pip', 'install', fawlty_cmd_version]
                 self.fawlty_install_out, self.fawlty_install_err = self.__terminal(install_fd_cmd)
                 
+            
             if install_requires:
-                install_req_cmd = [self.venv_python, '-m', 'pip', 'install', 'requires_text']
-                self.req_install_out, self.req_install_err = self.__terminal(install_req_cmd)
-    
+                requires_text = requires_text.replace('>=', '==').strip()
+                
+                for library in requires_text.split('\n'):
+                    install_req_cmd = [self.venv_python, '-m', 'pip', 'install', library]
+                    self.req_install_out, self.req_install_err = self.__terminal(install_req_cmd)
+        
     
     def run_fawlty_deps(self, fawlty_options:list=None):
         """Starts FawltyDeps at the location of the package's working directory. 
@@ -122,7 +131,22 @@ class FawltyInPractice:
         
         """
         
-        fawlty_cmd = [self.venv_python, '-m', 'fawltydeps', self.save_location + f'/{self.mapping_name}']
+        
+        fawlty_cmd = [self.venv_python,'-m', 'fawltydeps', self.save_location + f'/{self.mapping_name}']
+        
+        if self.install_requires:
+            fawlty_cmd.extend(['--pyenv', self.venv_loc])
+            
+            if '--install-deps' in fawlty_options and self.create_venv:
+                fawlty_options.remove('--install-deps')
+                warnings.warn(
+                    '''
+                    The 'install_requires' and 'create_venv' options are set to true, 
+                    so the '--install-deps' option in the fawltydeps call has been removed. 
+                    The '--pyenv' option will be used instead
+                    ''')
+                
+        
         if fawlty_options is not None:
             fawlty_cmd.extend(fawlty_options)
             
@@ -169,9 +193,10 @@ class FawltyInPractice:
             stdin=PIPE,
             stdout=PIPE,  
             stderr=PIPE)
-        output, err = exec_command.communicate()
-        output, err = output.decode('utf-8'), err.decode('utf-8')
-        return output, err 
+        out, err = exec_command.communicate()
+        out, err = out.decode('utf-8'), err.decode('utf-8')
+        
+        return out, err 
         
 
     

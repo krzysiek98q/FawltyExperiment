@@ -62,9 +62,11 @@ def report_warning(output):
     
     warnring_report = ''
     warnring_report += '# warnings\n'
+    
     if err_check.count('WARNING') > 0:
         warnings = output.split('\n')
         warnings = [*filter(lambda x: x.strip() != '', warnings)]
+        
         for i, warning in enumerate(warnings):
             warnring_report += f'## {i+1}.\n'
             warnring_report += f'`{warning}`\n'
